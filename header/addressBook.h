@@ -1,5 +1,5 @@
-#ifndef __ADDRESSBOOK__
-#define __ADDRESSBOOK__
+#ifndef __ADDRESSBOOK__H
+#define __ADDRESSBOOK__H
 
 #define MENU_INPUT 1
 #define MENU_REMOVE 2
@@ -26,48 +26,48 @@
 
 typedef struct ST_LINKEDLIST LINKEDLIST;
 
+/*
 typedef struct ST_PERSONALINFO {
 	char* name;
 	char* phone;
 	char* address;
 } PERSONALINFO;
-
+*/
 typedef struct ST_ADDRESSBOOK {
 	void (*inputPersonInfo)(LINKEDLIST*);
-	void (*removePersonInfo)(PERSONALINFO*);
-	void (*modifyPersonInfo)(PERSONALINFO*);
+	void (*removePersonInfo)(LINKEDLIST*);
+	void (*modifyPersonInfo)(LINKEDLIST*);
 	void (*searchPersonInfo)(LINKEDLIST*);
 	void (*printPersonInfo)(PERSONALINFO, int);
-	void (*printAllPersonInfo)(PERSONALINFO*);
+	void (*printAllPersonInfo)(LINKEDLIST*);
 
 	void (*saveAddressBook)(LINKEDLIST*);
 	void (*loadAddressBook)(LINKEDLIST*);
 
-	void (*printMainMenu)();
-	void (*print_finish)();
-	void (*print_error)(int);
+	//void (*printMainMenu)();
+	//void (*print_finish)();
+	//void (*print_error)(int);
 	int (*isEmptyAddressBook)(LINKEDLIST*);
-	void (*printHeader)(int);
+	//void (*printHeader)(int);
 	void (*printPersonInfoPointer)(PERSONALINFO*, int);
 } AddressBook;
 
 void inputPersonInfo(LINKEDLIST *pBook);
-void removePersonInfo(PERSONALINFO *pBook);
-void modifyPersonInfo(PERSONALINFO *pBook);
+void removePersonInfo(LINKEDLIST *pBook);
+void modifyPersonInfo(LINKEDLIST *pBook);
 void searchPersonInfo(LINKEDLIST *pBook);
 void printPersonInfo(PERSONALINFO info, int printNum);
-void printAllPersonInfo(PERSONALINFO *pBook);
-
+void printAllPersonInfo(LINKEDLIST *pBook);
 void saveAddressBook(LINKEDLIST *pBook);
 void loadAddressBook(LINKEDLIST *pBook);
+int isEmptyAddressBook(LINKEDLIST *pBook);
+void printPersonInfoPointer(PERSONALINFO *info, int printNum);
 
 void printMainMenu();
 void print_finish();
 void print_error(int error);
-int isEmptyAddressBook(LINKEDLIST *pBook);
 void printHeader(int printNum);
-void printPersonInfoPointer(PERSONALINFO *info, int printNum);
 
 void testSetup(LINKEDLIST *list);
 
-#endif // __ADDRESSBOOK__
+#endif // __ADDRESSBOOK__H
