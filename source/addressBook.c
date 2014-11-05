@@ -3,40 +3,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "linkedList.h"
 #include "addressBook.h"
+#include "linkedList.h"
+
 
 void printMainMenu() {
-	printf("1. ì£¼ì†Œì •ë³´ë¥¼ ì…ë ¥í•œë‹¤.\n");
-	printf("2. ì£¼ì†Œì •ë³´ë¥¼ ì‚­ì œí•œë‹¤.\n");
-	printf("3. ì£¼ì†Œì •ë³´ë¥¼ ìˆ˜ì •í•œë‹¤.\n");
-	printf("4. ì£¼ì†Œì •ë³´ë¥¼ ê²€ìƒ‰í•œë‹¤.\n");
-	printf("5. ì „ì²´ ì£¼ì†Œë¡ì„ ì¶œë ¥í•œë‹¤.\n");
-	printf("6. ì£¼ì†Œë¡ íŒŒì¼ì— ì €ì¥í•œë‹¤.\n");
-	printf("7. ì£¼ì†Œë¡ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¨ë‹¤.\n");
-	printf("0. ì¢…ë£Œí•œë‹¤.\n");
+	printf("1. ÁÖ¼ÒÁ¤º¸¸¦ ÀÔ·ÂÇÑ´Ù.\n");
+	printf("2. ÁÖ¼ÒÁ¤º¸¸¦ »èÁ¦ÇÑ´Ù.\n");
+	printf("3. ÁÖ¼ÒÁ¤º¸¸¦ ¼öÁ¤ÇÑ´Ù.\n");
+	printf("4. ÁÖ¼ÒÁ¤º¸¸¦ °Ë»öÇÑ´Ù.\n");
+	printf("5. ÀüÃ¼ ÁÖ¼Ò·ÏÀ» Ãâ·ÂÇÑ´Ù.\n");
+	printf("6. ÁÖ¼Ò·Ï ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù.\n");
+	printf("7. ÁÖ¼Ò·Ï ÆÄÀÏÀ» ºÒ·¯¿Â´Ù.\n");
+	printf("0. Á¾·áÇÑ´Ù.\n");
 }
 
 void print_finish() {
-	printf("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
+	printf("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.\n");
 }
 
 void print_error(int error) {
 	switch (error) {
 	case ERROR_NO_MENU:
-		printf("ì—†ëŠ” ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
+		printf("¾ø´Â ¹øÈ£¸¦ ÀÔ·ÂÇÏ¿´½À´Ï´Ù.\n");
 		break;
 	case ERROR_FULL:
-		printf("ì£¼ì†Œë¡ì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤.\n");
+		printf("ÁÖ¼Ò·ÏÀÌ °¡µæ Ã¡½À´Ï´Ù.\n");
 		break;
 	case ERROR_EMPTY:
-		printf("ì£¼ì†Œë¡ì´ ë¹„ì–´ìˆìŠµë‹ˆë‹¤.\n");
+		printf("ÁÖ¼Ò·ÏÀÌ ºñ¾îÀÖ½À´Ï´Ù.\n");
 		break;
 	case ERROR_NOT_SEARCH:
-		printf("ì£¼ì†Œì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
+		printf("ÁÖ¼ÒÁ¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.\n");
 		break;
 	case ERROR_LOAD_FAIL:
-		printf("addressbook.book íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¬ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
+		printf("addressbook.book ÆÄÀÏÀ» ºÒ·¯¿Ã¼ö ¾ø½À´Ï´Ù.\n");
 		break;
 	default:
 		break;
@@ -46,7 +47,7 @@ void print_error(int error) {
 int isEmptyAddressBook(LINKEDLIST *pBook) {
 	int isEmpty = TRUE;
 
-	if ( pBook->getLengthLinkedList(pBook) > 0 ) {
+	if (pBook->getLengthLinkedList(pBook) > 0) {
 		isEmpty = FALSE;
 	}
 
@@ -58,24 +59,24 @@ void inputPersonInfo(LINKEDLIST *pBook) {
 	char yesno;
 	PERSONALINFO info;
 
-	printf("ì´ë¦„ : ");
+	printf("ÀÌ¸§ : ");
 	scanf("%s", info.name);
-	printf("ì „í™”ë²ˆí˜¸ : ");
+	printf("ÀüÈ­¹øÈ£ : ");
 	scanf("%s", info.phone);
-	printf("ì£¼ì†Œ : ");
+	printf("ÁÖ¼Ò : ");
 	scanf("%s", info.address);
 
-	printf("ì…ë ¥ëœ ì •ë³´\n");
+	printf("ÀÔ·ÂµÈ Á¤º¸\n");
 	printHeader(FALSE);
 	printPersonInfo(info, FALSE);
 
 	fflush(stdin);
-	printf("ì¶”ê°€í•˜ì‹œê² ìŠµë‹ˆê¹Œ ? (y/n) :");
+	printf("Ãß°¡ÇÏ½Ã°Ú½À´Ï±î ? (y/n) :");
 	yesno = getchar();
 
-	if ( yesno == 'y' ) {
+	if (yesno == 'y') {
 		pBook->appendLinkedList(pBook, &info);
-		printf("ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
+		printf("Ãß°¡µÇ¾ú½À´Ï´Ù.\n");
 	}
 }
 
@@ -84,31 +85,31 @@ void removePersonInfo(LINKEDLIST *pBook) {
 	int removeIndex = -1;
 	char yesno;
 
-	if ( isEmptyAddressBook(pBook) == TRUE ) {
+	if (isEmptyAddressBook(pBook) == TRUE) {
 		print_error(ERROR_EMPTY);
-		return ;
+		return;
 	}
 
-	printf("ì‚­ì œí•  ì´ë¦„: ");
+	printf("»èÁ¦ÇÒ ÀÌ¸§: ");
 	scanf("%s", name);
 
 	removeIndex = pBook->findNameLinkedList(pBook, name);
 
-	if ( removeIndex == -1 ) {
+	if (removeIndex == -1) {
 		print_error(ERROR_NOT_SEARCH);
-		return ;
+		return;
 	}
 
 	printHeader(FALSE);
 	printPersonInfo(viewAtLinkedList(pBook, removeIndex), FALSE);
 
 	fflush(stdin);
-	printf("ì‚­ì œí•˜ê² ìŠµë‹ˆê¹Œ? (y/n) :");
+	printf("»èÁ¦ÇÏ°Ú½À´Ï±î? (y/n) :");
 	yesno = getchar();
 
-	if ( yesno == 'y' ) {
+	if (yesno == 'y') {
 		pBook->deleteLinkedList(pBook, removeIndex);
-		printf("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.\n");
+		printf("»èÁ¦µÇ¾ú½À´Ï´Ù.\n");
 	}
 }
 
@@ -119,37 +120,37 @@ void modifyPersonInfo(LINKEDLIST *pBook) {
 	PERSONALINFO info;
 	NODE *target;
 
-	if ( isEmptyAddressBook(pBook) == TRUE ) {
+	if (isEmptyAddressBook(pBook) == TRUE) {
 		print_error(ERROR_EMPTY);
-		return ;
+		return;
 	}
 
-	printf("ìˆ˜ì •í•  ì´ë¦„: ");
+	printf("¼öÁ¤ÇÒ ÀÌ¸§: ");
 	scanf("%s", name);
 
 	modifyIndex = pBook->findNameLinkedList(pBook, name);
 
-	if ( modifyIndex == -1 ) {
+	if (modifyIndex == -1) {
 		print_error(ERROR_NOT_SEARCH);
-		return ;
+		return;
 	}
 
 	printHeader(FALSE);
 	printPersonInfo(viewAtLinkedList(pBook, modifyIndex), FALSE);
 
 	fflush(stdin);
-	printf("ìˆ˜ì •í•˜ê² ìŠµë‹ˆê¹Œ? (y/n) :");
+	printf("¼öÁ¤ÇÏ°Ú½À´Ï±î? (y/n) :");
 	yesno = getchar();
 
-	if ( yesno == 'y' ) {
-		printf("ì´ë¦„ : ");
+	if (yesno == 'y') {
+		printf("ÀÌ¸§ : ");
 		scanf("%s", info.name);
-		printf("ì „í™”ë²ˆí˜¸ : ");
+		printf("ÀüÈ­¹øÈ£ : ");
 		scanf("%s", info.phone);
-		printf("ì£¼ì†Œ : ");
+		printf("ÁÖ¼Ò : ");
 		scanf("%s", info.address);
 
-		printf("ìˆ˜ì •ëœ ì •ë³´\n");
+		printf("¼öÁ¤µÈ Á¤º¸\n");
 		printHeader(FALSE);
 		printPersonInfo(info, FALSE);
 
@@ -159,7 +160,7 @@ void modifyPersonInfo(LINKEDLIST *pBook) {
 		strcpy(target->info->phone, info.phone);
 		strcpy(target->info->address, info.address);
 
-		printf("ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
+		printf("¼öÁ¤µÇ¾ú½À´Ï´Ù.\n");
 	}
 }
 
@@ -167,19 +168,19 @@ void searchPersonInfo(LINKEDLIST *pBook) {
 	char name[7];
 	int foundIndex = -1;
 
-	if ( isEmptyAddressBook(pBook) == TRUE ) {
+	if (isEmptyAddressBook(pBook) == TRUE) {
 		print_error(ERROR_EMPTY);
-		return ;
+		return;
 	}
 
-	printf("ê²€ìƒ‰í•  ì´ë¦„: ");
+	printf("°Ë»öÇÒ ÀÌ¸§: ");
 	scanf("%s", name);
 
 	foundIndex = pBook->findNameLinkedList(pBook, name);
 
-	if ( foundIndex == -1 ) {
+	if (foundIndex == -1) {
 		print_error(ERROR_NOT_SEARCH);
-		return ;
+		return;
 	}
 
 	printHeader(FALSE);
@@ -188,26 +189,29 @@ void searchPersonInfo(LINKEDLIST *pBook) {
 
 void printHeader(int printNum) {
 	printf("----------------------------------------------\n");
-	if ( printNum == TRUE ) {
-		printf("ë²ˆí˜¸  ì´ë¦„     ì „í™”ë²ˆí˜¸      ì£¼ì†Œ\n");
-	} else {
-		printf("ì´ë¦„     ì „í™”ë²ˆí˜¸      ì£¼ì†Œ\n");
+	if (printNum == TRUE) {
+		printf("¹øÈ£  ÀÌ¸§     ÀüÈ­¹øÈ£      ÁÖ¼Ò\n");
+	}
+	else {
+		printf("ÀÌ¸§     ÀüÈ­¹øÈ£      ÁÖ¼Ò\n");
 	}
 	printf("----------------------------------------------\n");
 }
 
 void printPersonInfo(PERSONALINFO info, int printNum) {
-	if ( printNum != FALSE ) {
+	if (printNum != FALSE) {
 		printf("%-4d  %-7s  %-12s  %-50s\n", printNum, info.name, info.phone, info.address);
-	} else {
+	}
+	else {
 		printf("%-8s  %-12s  %-50s\n", info.name, info.phone, info.address);
 	}
 }
 
 void printPersonInfoPointer(PERSONALINFO *info, int printNum) {
-	if ( printNum != FALSE ) {
+	if (printNum != FALSE) {
 		printf("%-4d  %-7s  %-12s  %-50s\n", printNum, info->name, info->phone, info->address);
-	} else {
+	}
+	else {
 		printf("%-8s  %-12s  %-50s\n", info->name, info->phone, info->address);
 	}
 }
@@ -216,14 +220,14 @@ void printAllPersonInfo(LINKEDLIST *pBook) {
 	int number = 1;
 	NODE *target;
 
-	if ( isEmptyAddressBook(pBook) == TRUE ) {
+	if (isEmptyAddressBook(pBook) == TRUE) {
 		print_error(ERROR_EMPTY);
-		return ;
+		return;
 	}
 
 	printHeader(TRUE);
 	target = pBook->moveFirstLinkedList(pBook);
-	while ( pBook->isTailLinkedList(pBook) != TRUE ) {
+	while (pBook->isTailLinkedList(pBook) != TRUE) {
 		printPersonInfoPointer(target->info, number);
 		target = pBook->nextLinkedList(pBook);
 		number++;
@@ -235,15 +239,15 @@ void saveAddressBook(LINKEDLIST *pBook) {
 	int index = 0;
 	NODE *target;
 
-	if ( isEmptyAddressBook(pBook) == TRUE ) {
+	if (isEmptyAddressBook(pBook) == TRUE) {
 		print_error(ERROR_EMPTY);
-		return ;
+		return;
 	}
 
 	fp = fopen("addressbook.dat", "w");
 
 	target = pBook->moveFirstLinkedList(pBook);
-	while ( pBook->isTailLinkedList(pBook) != TRUE ) {
+	while (pBook->isTailLinkedList(pBook) != TRUE) {
 		fprintf(fp, "%s\n", target->info->name);
 		fprintf(fp, "%s\n", target->info->phone);
 		fprintf(fp, "%s\n", target->info->address);
@@ -251,7 +255,7 @@ void saveAddressBook(LINKEDLIST *pBook) {
 	}
 
 	fclose(fp);
-	printf("addressbook.dat íŒŒì¼ì— ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
+	printf("addressbook.dat ÆÄÀÏ¿¡ ÀúÀåÇÏ¿´½À´Ï´Ù.\n");
 }
 
 void loadAddressBook(LINKEDLIST *pBook) {
@@ -262,59 +266,77 @@ void loadAddressBook(LINKEDLIST *pBook) {
 
 	fp = fopen("addressbook.dat", "r");
 
-	if ( fp == NULL ) {
+	if (fp == NULL) {
 		print_error(ERROR_LOAD_FAIL);
-		return ;
+		return;
 	}
 
-	while( ! feof(fp) ) {
+	while (!feof(fp)) {
 		memset(&info, 0x00, sizeof(PERSONALINFO));
 		fscanf(fp, "%s", info.name);
 		fscanf(fp, "%s", info.phone);
 		fscanf(fp, "%s", info.address);
 
-		if ( strcmp(info.name, "") ==  0 ) {
+		if (strcmp(info.name, "") == 0) {
 			break;
 		}
 		pBook->appendLinkedList(pBook, &info);
 	}
 
 	fclose(fp);
-	printf("addressbook.dat íŒŒì¼ì„ ë¶ˆëŸ¬ì™”ìŠµë‹ˆë‹¤.\n");
+	printf("addressbook.dat ÆÄÀÏÀ» ºÒ·¯¿Ô½À´Ï´Ù.\n");
 }
 
 void testSetup(LINKEDLIST *list) {
 	int index = 0;
 	PERSONALINFO sample[MAX_SIZE] = {
-			{"aaa", "0001112222", "abc"},
-			{"bbb", "0001113333", "abc"},
-			{"ccc", "0001114444", "abc"},
-			{"ddd", "0001115555", "abc"},
-			{"eee", "0001116666", "abc"},
-			{"fff", "0001117777", "abc"},
-			{"ggg", "0001118888", "abc"},
-			{"hhh", "0001119999", "abc"},
-			{"iii", "0001110000", "abc"},
-			{"jjj", "0002220000", "abc"}
+			{ "aaa", "0001112222", "abc" },
+			{ "bbb", "0001113333", "abc" },
+			{ "ccc", "0001114444", "abc" },
+			{ "ddd", "0001115555", "abc" },
+			{ "eee", "0001116666", "abc" },
+			{ "fff", "0001117777", "abc" },
+			{ "ggg", "0001118888", "abc" },
+			{ "hhh", "0001119999", "abc" },
+			{ "iii", "0001110000", "abc" },
+			{ "jjj", "0002220000", "abc" }
 	};
 
-	for ( index = 0; index < MAX_SIZE; index++ ) {
+	for (index = 0; index < MAX_SIZE; index++) {
 		list->appendLinkedList(list, &(sample[index]));
 	}
+}
+
+void createAddressBook(AddressBook* self) {
+	
+	self->inputPersonInfo = inputPersonInfo;
+	self->removePersonInfo = removePersonInfo;
+	self->modifyPersonInfo = modifyPersonInfo;
+	self->searchPersonInfo = searchPersonInfo;
+	self->printAllPersonInfo = printAllPersonInfo;
+
+	self->isEmptyAddressBook = isEmptyAddressBook;	
+	self->printPersonInfo = printPersonInfo;
+	self->printPersonInfoPointer = printPersonInfoPointer;
+	
+	self->saveAddressBook = saveAddressBook;
+	self->loadAddressBook = loadAddressBook;	
 }
 
 int main(void) {
 	int menu = -1;
 	LINKEDLIST *book;
-	//AddressBook *addressBook;
-	//addressBook = (AddressBook*)malloc(sizeof(AddressBook));
+	AddressBook *self;
+
 	book = (LINKEDLIST*)malloc(sizeof(LINKEDLIST));
-	
+	self = (AddressBook*)malloc(sizeof(AddressBook));
+
 	createLinkedList(book);
+	createAddressBook(self);
 
-	//testSetup(book);
+	testSetup(book);
 
-	while ( menu != 0 ) {
+	while (menu != 0) {
 		printMainMenu();
 
 		printf("menu: ");
@@ -323,25 +345,25 @@ int main(void) {
 
 		switch (menu) {
 		case MENU_INPUT:
-			inputPersonInfo(book);
+			self->inputPersonInfo(book);
 			break;
 		case MENU_REMOVE:
-			removePersonInfo(book);
+			self->removePersonInfo(book);
 			break;
 		case MENU_MODIFY:
-			modifyPersonInfo(book);
+			self->modifyPersonInfo(book);
 			break;
 		case MENU_SEARCH:
-			searchPersonInfo(book);
+			self->searchPersonInfo(book);
 			break;
 		case MENU_ALL_PRINT:
-			printAllPersonInfo(book);
+			self->printAllPersonInfo(book);
 			break;
 		case MENU_SAVE:
-			saveAddressBook(book);
+			self->saveAddressBook(book);
 			break;
 		case MENU_LOAD:
-			loadAddressBook(book);
+			self->loadAddressBook(book);
 			break;
 		case MENU_FINISH:
 			print_finish();
@@ -350,9 +372,9 @@ int main(void) {
 			print_error(ERROR_NO_MENU);
 			break;
 		}
-		if ( menu != MENU_FINISH ) {
+		if (menu != MENU_FINISH) {
 			fflush(stdin);
-			printf("\nmenu í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤. (ì•„ë¬´í‚¤ë‚˜ ëˆ„ë¥´ì„¸ìš”)\n");
+			printf("\nmenu È­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù. (¾Æ¹«Å°³ª ´©¸£¼¼¿ä)\n");
 			getchar();
 		}
 	}

@@ -26,42 +26,42 @@
 
 typedef struct ST_LINKEDLIST LINKEDLIST;
 
-/*
 typedef struct ST_PERSONALINFO {
-	char* name;
-	char* phone;
-	char* address;
+	char name[7];
+	char phone[12];
+	char address[50];
 } PERSONALINFO;
-*/
+
 typedef struct ST_ADDRESSBOOK {
-	void (*inputPersonInfo)(LINKEDLIST*);
-	void (*removePersonInfo)(LINKEDLIST*);
-	void (*modifyPersonInfo)(LINKEDLIST*);
-	void (*searchPersonInfo)(LINKEDLIST*);
-	void (*printPersonInfo)(PERSONALINFO, int);
-	void (*printAllPersonInfo)(LINKEDLIST*);
+	void(*inputPersonInfo)(LINKEDLIST*);
+	void(*removePersonInfo)(LINKEDLIST*);
+	void(*modifyPersonInfo)(LINKEDLIST*);
+	void(*searchPersonInfo)(LINKEDLIST*);
+	void(*printPersonInfo)(PERSONALINFO, int);
+	void(*printAllPersonInfo)(LINKEDLIST*);
 
-	void (*saveAddressBook)(LINKEDLIST*);
-	void (*loadAddressBook)(LINKEDLIST*);
+	void(*saveAddressBook)(LINKEDLIST*);
+	void(*loadAddressBook)(LINKEDLIST*);
 
-	//void (*printMainMenu)();
-	//void (*print_finish)();
-	//void (*print_error)(int);
-	int (*isEmptyAddressBook)(LINKEDLIST*);
-	//void (*printHeader)(int);
-	void (*printPersonInfoPointer)(PERSONALINFO*, int);
+	int(*isEmptyAddressBook)(LINKEDLIST*);
+	void(*printPersonInfoPointer)(PERSONALINFO*, int);
 } AddressBook;
+
+void createAddressBook(AddressBook* self);
 
 void inputPersonInfo(LINKEDLIST *pBook);
 void removePersonInfo(LINKEDLIST *pBook);
 void modifyPersonInfo(LINKEDLIST *pBook);
 void searchPersonInfo(LINKEDLIST *pBook);
+
+int isEmptyAddressBook(LINKEDLIST *pBook);
+
 void printPersonInfo(PERSONALINFO info, int printNum);
 void printAllPersonInfo(LINKEDLIST *pBook);
+void printPersonInfoPointer(PERSONALINFO *info, int printNum);
+
 void saveAddressBook(LINKEDLIST *pBook);
 void loadAddressBook(LINKEDLIST *pBook);
-int isEmptyAddressBook(LINKEDLIST *pBook);
-void printPersonInfoPointer(PERSONALINFO *info, int printNum);
 
 void printMainMenu();
 void print_finish();

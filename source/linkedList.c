@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+#include "addressBook.h"
 #include "linkedlist.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,18 +10,20 @@
 
 void printHeaderLinkedList(int printNum) {
 	printf("----------------------------------------------\n");
-	if ( printNum == TRUE ) {
-		printf("ë²ˆí˜¸  ì´ë¦„     ì „í™”ë²ˆí˜¸      ì£¼ì†Œ\n");
-	} else {
-		printf("ì´ë¦„     ì „í™”ë²ˆí˜¸      ì£¼ì†Œ\n");
+	if (printNum == TRUE) {
+		printf("¹øÈ£  ÀÌ¸§     ÀüÈ­¹øÈ£      ÁÖ¼Ò\n");
+	}
+	else {
+		printf("ÀÌ¸§     ÀüÈ­¹øÈ£      ÁÖ¼Ò\n");
 	}
 	printf("----------------------------------------------\n");
 }
 
 void printPersonInfoLinkedList(PERSONALINFO *info, int printNum) {
-	if ( printNum != FALSE ) {
+	if (printNum != FALSE) {
 		printf("%-4d  %-7s  %-12s  %-50s\n", printNum, info->name, info->phone, info->address);
-	} else {
+	}
+	else {
 		printf("%-8s  %-12s  %-50s\n", info->name, info->phone, info->address);
 	}
 }
@@ -32,7 +35,7 @@ void printLinedList(LINKEDLIST *self) {
 	printHeaderLinkedList(TRUE);
 
 	target = moveFirstLinkedList(self);
-	while ( isTailLinkedList(self) != TRUE ) {
+	while (isTailLinkedList(self) != TRUE) {
 		printPersonInfoLinkedList(target->info, number);
 		target = nextLinkedList(self);
 		number++;
@@ -43,12 +46,12 @@ void printLinedList(LINKEDLIST *self) {
 int main(void) {
 	LINKEDLIST *list;
 
-	PERSONALINFO info1 = {"aaa", "0001110000", "xxx", USE};
-	PERSONALINFO info2 = {"bbb", "0002220000", "yyy", USE};
-	PERSONALINFO info3 = {"ccc", "0003330000", "zzz", USE};
+	PERSONALINFO info1 = { "aaa", "0001110000", "xxx", USE };
+	PERSONALINFO info2 = { "bbb", "0002220000", "yyy", USE };
+	PERSONALINFO info3 = { "ccc", "0003330000", "zzz", USE };
 
 	list = (LINKEDLIST*)malloc(sizeof(LINKEDLIST));
-	
+
 	createLinkedList(list);
 
 	appendLinkedList(list, &info1);
@@ -58,9 +61,9 @@ int main(void) {
 	printLinedList(list);
 
 	destroyLinkedList(list);
-	
+
 	free(list);
-	
+
 	return 0;
 }
 
@@ -75,11 +78,25 @@ void createLinkedList(LINKEDLIST *self) {
 	self->tail->next = NULL;
 	self->pos = self->head->next;
 	self->length = 0;
+
+	self->appendLinkedList = appendLinkedList;
+	self->deleteAllLinkedList = deleteAllLinkedList;
+	self->deleteLinkedList = deleteLinkedList;
+	self->findNameLinkedList = findNameLinkedList;
+	self->getLengthLinkedList = getLengthLinkedList;
+	self->getNodeLinkedList = getNodeLinkedList;
+	self->insertLinkedList = insertLinkedList;
+	self->isTailLinkedList = isTailLinkedList;
+	self->moveFirstLinkedList = moveFirstLinkedList;
+	self->moveLastLinkedList = moveLastLinkedList;
+	self->moveToBeforeNodeLinkedList = moveToBeforeNodeLinkedList;
+	self->nextLinkedList = nextLinkedList;
+	self->viewAtLinkedList = viewAtLinkedList;
 }
 
 void destroyLinkedList(LINKEDLIST *self) {
 
-	if ( self->length > 0 ) {
+	if (self->length > 0) {
 		self->deleteAllLinkedList(self);
 	}
 
@@ -114,11 +131,12 @@ NODE* moveToBeforeNodeLinkedList(LINKEDLIST *self, int index) {
 	NODE *target;
 	int i = 0;
 
-	if ( index <= 0 ) {
+	if (index <= 0) {
 		target = self->head;
-	} else {
+	}
+	else {
 		target = self->moveFirstLinkedList(self);
-		while ( i < index - 1 ) {
+		while (i < index - 1) {
 			target = self->nextLinkedList(self);
 			i++;
 		}
@@ -173,11 +191,11 @@ void deleteLinkedList(LINKEDLIST *self, int index) {
 
 void deleteAllLinkedList(LINKEDLIST *self) {
 
-	if ( self->length == 0 ) {
-		return ;
+	if (self->length == 0) {
+		return;
 	}
 
-	while ( getLengthLinkedList(self) > 0 ) {
+	while (getLengthLinkedList(self) > 0) {
 		self->deleteLinkedList(self, 0);
 	}
 
@@ -212,9 +230,10 @@ NODE* moveFirstLinkedList(LINKEDLIST *self) {
 NODE* moveLastLinkedList(LINKEDLIST *self) {
 
 	NODE *target;
-	if ( self->length <= 0 ) {
+	if (self->length <= 0) {
 		target = self->head;
-	} else {
+	}
+	else {
 		target = (self->moveToBeforeNodeLinkedList(self, self->length - 1))->next;
 	}
 
@@ -234,7 +253,7 @@ int isTailLinkedList(LINKEDLIST *self) {
 
 	int isTail = FALSE;
 
-	if ( self->pos->next == NULL ) {
+	if (self->pos->next == NULL) {
 		isTail = TRUE;
 	}
 
@@ -261,8 +280,8 @@ int findNameLinkedList(LINKEDLIST *self, char* p_name) {
 	int isFound = FALSE;
 
 	self->moveFirstLinkedList(self);
-	while ( isTailLinkedList(self) != TRUE ) {
-		if ( strcmp(self->pos->info->name, p_name) == 0 ) {
+	while (isTailLinkedList(self) != TRUE) {
+		if (strcmp(self->pos->info->name, p_name) == 0) {
 			isFound = TRUE;
 			break;
 		}
@@ -270,7 +289,7 @@ int findNameLinkedList(LINKEDLIST *self, char* p_name) {
 		index++;
 	}
 
-	if ( isFound == FALSE ) {
+	if (isFound == FALSE) {
 		index = -1;
 	}
 

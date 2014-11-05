@@ -9,12 +9,7 @@
 
 typedef struct ST_NODE NODE;
 typedef struct ST_LINKEDLIST LINKEDLIST;
-
-typedef struct ST_PERSONALINFO {
-	char name[7];
-	char phone[12];
-	char address[50];
-} PERSONALINFO;
+typedef struct ST_PERSONALINFO PERSONALINFO;
 
 typedef struct ST_NODE {
 	PERSONALINFO *info;
@@ -29,22 +24,19 @@ typedef struct ST_LINKEDLIST {
 
 	//void (*createLinkedList)(LINKEDLIST*);
 	//void (*destroyLinkedList)(LINKEDLIST*);
-	int (*findNameLinkedList)(LINKEDLIST*, char*);
-	void (*appendLinkedList)(LINKEDLIST*, PERSONALINFO*);
-	void (*insertLinkedList)(LINKEDLIST*, int, PERSONALINFO*);
-	void (*deleteLinkedList)(LINKEDLIST*, int);
-	void (*deleteAllLinkedList)(LINKEDLIST*);
+	int(*findNameLinkedList)(LINKEDLIST*, char*);
+	void(*appendLinkedList)(LINKEDLIST*, PERSONALINFO*);
+	void(*insertLinkedList)(LINKEDLIST*, int, PERSONALINFO*);
+	void(*deleteLinkedList)(LINKEDLIST*, int);
+	void(*deleteAllLinkedList)(LINKEDLIST*);
 	NODE* (*moveFirstLinkedList)(LINKEDLIST*);
 	NODE* (*moveLastLinkedList)(LINKEDLIST*);
 	NODE* (*nextLinkedList)(LINKEDLIST*);
 	NODE* (*moveToBeforeNodeLinkedList)(LINKEDLIST*, int);
-	PERSONALINFO (*viewAtLinkedList)(LINKEDLIST*, int);
-	int (*isTailLinkedList)(LINKEDLIST*);
-	int (*getLengthLinkedList)(LINKEDLIST*);
+	PERSONALINFO(*viewAtLinkedList)(LINKEDLIST*, int);
+	int(*isTailLinkedList)(LINKEDLIST*);
+	int(*getLengthLinkedList)(LINKEDLIST*);
 	NODE* (*getNodeLinkedList)(LINKEDLIST*, int);
-	void (*printHeaderLinkedList)(int);
-	void (*printPersonInfoLinkedList)(PERSONALINFO*, int);
-	void (*printLinedList)(LINKEDLIST*);
 } LINKEDLIST;
 
 void createLinkedList(LINKEDLIST *self);
@@ -63,6 +55,8 @@ PERSONALINFO viewAtLinkedList(LINKEDLIST *self, int index);
 int isTailLinkedList(LINKEDLIST *self);
 int getLengthLinkedList(LINKEDLIST *self);
 NODE* getNodeLinkedList(LINKEDLIST *self, int index);
+
+// for debugging
 void printHeaderLinkedList(int printNum);
 void printPersonInfoLinkedList(PERSONALINFO *info, int printNum);
 void printLinedList(LINKEDLIST *self);
