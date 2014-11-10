@@ -1,0 +1,62 @@
+@startuml
+
+class PERSONINFO {
+name : char[7]
+phone : char[12]
+address : char[50]
+}
+
+class NODE {
+info : PERSONALINFO *
+next : NODE *
+}
+
+class LINKEDLIST {
+head : NODE *
+tail : NODE *
+pos : NODE *
+length : int
+createLinkedList(self : LINKEDLIST *)
+destroyLinkedList(self : LINKEDLIST *)
+appendLinkedList(self : LINKEDLIST *, p_info : PERSONALINFO* )
+moveToBeforeNodeLinkedList(self : LINKEDLIST *, index : int) : NODE*
+insertLinkedList(self : LINKEDLIST *, index : int, p_info : PERSONALINFO*)
+deleteLinkedList(self : LINKEDLIST *, index : int)
+deleteAllLinkedList(self : LINKEDLIST *)
+viewAtLinkedList(self : LINKEDLIST *, index : int) : PERSONALINFO
+moveFirstLinkedList(self : LINKEDLIST *) : NODE*
+moveLastLinkedList(self : LINKEDLIST *) : NODE*
+nextLinkedList(self : LINKEDLIST *) : NODE*
+isTailLinkedList(self : LINKEDLIST *) : int
+getLengthLinkedList(self : LINKEDLIST *) : int
+getNodeLinkedList(self : LINKEDLIST *, index : int) : NODE*
+findNameLinkedList(self : LINKEDLIST *, p_name : char*) : int
+}
+
+class ADDRESSBOOK {
+list : LINKEDLIST *
+createAddressBook(self : ADDRESSBOOK *)
+destroyAddressBook(self : ADDRESSBOOK *)
+printMainMenu(self : ADDRESSBOOK *)
+print_finish(self : ADDRESSBOOK *)
+print_error(self : ADDRESSBOOK *, error : int)
+isEmptyAddressBook(self : ADDRESSBOOK *) : int
+inputPersonInfo(self : ADDRESSBOOK *)
+removePersonInfo(self : ADDRESSBOOK *)
+modifyPersonInfo(self : ADDRESSBOOK *)
+searchPersonInfo(self : ADDRESSBOOK *)
+printHeader(self : ADDRESSBOOK *, printNum : int)
+printPersonInfo(self : ADDRESSBOOK *, info : PERSONALINFO, printNum : int)
+printPersonInfoPointer(self : ADDRESSBOOK *, info : PERSONALINFO *, printNum : int)
+printAllPersonInfo(self : ADDRESSBOOK *)
+saveAddressBook(self : ADDRESSBOOK *)
+loadAddressBook(self : ADDRESSBOOK *)
+testSetup(self : ADDRESSBOOK *)
+}
+
+PERSONINFO "1" <--o "1" NODE
+NODE "1" <-- "1" NODE
+NODE "2..*" <--* "1" LINKEDLIST
+LINKEDLIST "1" <--* "1" ADDRESSBOOK
+
+@enduml
