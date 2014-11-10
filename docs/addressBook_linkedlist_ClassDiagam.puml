@@ -54,9 +54,10 @@ loadAddressBook(self : ADDRESSBOOK *)
 testSetup(self : ADDRESSBOOK *)
 }
 
-PERSONINFO "1" <--o "1" NODE
-NODE "1" <-- "1" NODE
-NODE "2..*" <--* "1" LINKEDLIST
-LINKEDLIST "1" <--* "1" ADDRESSBOOK
+
+ADDRESSBOOK "1" *--> "1" LINKEDLIST
+LINKEDLIST "1" *--> "2..*" NODE
+NODE "1" --> "1" NODE
+NODE "1" o--> "1" PERSONINFO
 
 @enduml
