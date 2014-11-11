@@ -1,3 +1,4 @@
+#define  _CRT_SECURE_NO_WARNINGS
 /*
  * addressbook.c
  *
@@ -317,16 +318,16 @@ void loadAddressBook(ADDRESSBOOK *self) {
 void testSetup(ADDRESSBOOK *self) {
 	int index = 0;
 	PERSONALINFO sample[10] = {
-			{"aaa", "0001112222", "abc", USE},
-			{"bbb", "0001113333", "abc", USE},
-			{"ccc", "0001114444", "abc", USE},
-			{"ddd", "0001115555", "abc", USE},
-			{"eee", "0001116666", "abc", USE},
-			{"fff", "0001117777", "abc", USE},
-			{"ggg", "0001118888", "abc", USE},
-			{"hhh", "0001119999", "abc", USE},
-			{"iii", "0001110000", "abc", USE},
-			{"jjj", "0002220000", "abc", USE}
+			{"aaa", "0001112222", "abc"},
+			{"bbb", "0001113333", "abc"},
+			{"ccc", "0001114444", "abc"},
+			{"ddd", "0001115555", "abc"},
+			{"eee", "0001116666", "abc"},
+			{"fff", "0001117777", "abc"},
+			{"ggg", "0001118888", "abc"},
+			{"hhh", "0001119999", "abc"},
+			{"iii", "0001110000", "abc"},
+			{"jjj", "0002220000", "abc"}
 	};
 
 	for ( index = 0; index < 10; index++ ) {

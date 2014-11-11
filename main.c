@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 /*
  * main.c
  *
@@ -6,6 +7,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "addressbook.h"
 
 int main(void) {
