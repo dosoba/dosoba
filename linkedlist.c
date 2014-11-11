@@ -1,18 +1,27 @@
+/*
+ * linkedlist.c
+ *
+ *  Created on: 2014. 11. 7.
+ *      Author: suandkyu
+ */
+
 #include "linkedlist.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #if 0
+
 void printHeaderLinkedList(int printNum) {
 	printf("----------------------------------------------\n");
 	if ( printNum == TRUE ) {
-		printf("ë²ˆí˜¸  ì´ë¦„     ì „í™”ë²ˆí˜¸      ì£¼ì†Œ\n");
+		printf("¹øÈ£  ÀÌ¸§     ÀüÈ­¹øÈ£      ÁÖ¼Ò\n");
 	} else {
-		printf("ì´ë¦„     ì „í™”ë²ˆí˜¸      ì£¼ì†Œ\n");
+		printf("ÀÌ¸§     ÀüÈ­¹øÈ£      ÁÖ¼Ò\n");
 	}
 	printf("----------------------------------------------\n");
 }
+
 void printPersonInfoLinkedList(PERSONALINFO *info, int printNum) {
 	if ( printNum != FALSE ) {
 		printf("%-4d  %-7s  %-12s  %-50s\n", printNum, info->name, info->phone, info->address);
@@ -20,10 +29,13 @@ void printPersonInfoLinkedList(PERSONALINFO *info, int printNum) {
 		printf("%-8s  %-12s  %-50s\n", info->name, info->phone, info->address);
 	}
 }
+
 void printLinedList(LINKEDLIST *self) {
 	int number = 1;
 	NODE *target;
+
 	printHeaderLinkedList(TRUE);
+
 	target = self->moveFirstLinkedList(self);
 	while ( self->isTailLinkedList(self) != TRUE ) {
 		printPersonInfoLinkedList(target->info, number);
@@ -31,21 +43,32 @@ void printLinedList(LINKEDLIST *self) {
 		number++;
 	}
 }
+
+
 int main(void) {
 	LINKEDLIST *list;
+
 	PERSONALINFO info1 = {"aaa", "0001110000", "xxx", USE};
 	PERSONALINFO info2 = {"bbb", "0002220000", "yyy", USE};
 	PERSONALINFO info3 = {"ccc", "0003330000", "zzz", USE};
+
 	list = (LINKEDLIST*)malloc(sizeof(LINKEDLIST));
+
 	createLinkedList(list);
+
 	list->appendLinkedList(list, &info1);
 	list->appendLinkedList(list, &info2);
 	list->insertLinkedList(list, 1, &info3);
+
 	printLinedList(list);
+
 	destroyLinkedList(list);
+
 	free(list);
+
 	return 0;
 }
+
 #endif
 
 void createLinkedList(LINKEDLIST *self) {
@@ -54,8 +77,7 @@ void createLinkedList(LINKEDLIST *self) {
 
 	self->head->next = self->tail;
 	self->tail->next = NULL;
-	self->pos = self->head;
-	//self->pos = self->head->next;
+	self->pos = self->head->next;
 	self->length = 0;
 
 	self->appendLinkedList = *appendLinkedList;
