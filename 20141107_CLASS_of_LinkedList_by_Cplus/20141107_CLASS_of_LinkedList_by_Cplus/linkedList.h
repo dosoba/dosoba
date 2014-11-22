@@ -15,36 +15,35 @@
 
 #include "personinfo.h"
 
-typedef struct _tag_NODE NODE;
-
-typedef struct _tag_NODE {
-	PERSONALINFO *info;
-	NODE *next;
-} NODE;
+class Node {
+public:
+	PersonalInfo *info;
+	Node *next;
+};
 
 class List {
 private:
-	NODE *head;
-	NODE *tail;
-	NODE *pos;
+	Node *head;
+	Node *tail;
+	Node *pos;
 	int length;
 public:
 	List();
 	~List();
-	void appendLinkedList(PERSONALINFO*);
-	NODE* moveToBeforeNodeLinkedList(int);
-	void insertLinkedList(int, PERSONALINFO*);
-	void deleteLinkedList(int);
-	void deleteAllLinkedList();
-	PERSONALINFO viewAtLinkedList(int);
-	NODE* moveFirstLinkedList();
-	NODE* moveLastLinkedList();
-	NODE* nextLinkedList();
-	int isTailLinkedList();
-	int getLengthLinkedList();
-	NODE* getNodeLinkedList(int);
-	int findNameLinkedList(char*);
-	void printLinedList();
+	void append(PersonalInfo&);
+	Node* moveToBeforeNode(int);
+	void insert(int, PersonalInfo&);
+	void erase(int);
+	void eraseAll();
+	PersonalInfo viewAt(int);
+	Node* moveFirst();
+	Node* moveLast();
+	Node* moveNext();
+	int isTail();
+	int getLength();
+	Node* getNode(int);
+	int findName(string);
+	void print();
 };
 
 #endif // __LINKEDLIST__

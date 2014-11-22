@@ -7,10 +7,15 @@
 #ifndef PERSONINFO_H_
 #define PERSONINFO_H_
 
-typedef struct _tag_PERSONALINFO {
-	char name[7];
-	char phone[12];
-	char address[50];
-} PERSONALINFO;
+#include <string>
+
+using namespace std;
+
+class PersonalInfo {
+public:
+	string name;
+	string phone;
+	string address;
+};
 
 #endif /* PERSONINFO_H_ */

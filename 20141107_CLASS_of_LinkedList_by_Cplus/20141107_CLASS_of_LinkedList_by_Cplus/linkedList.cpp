@@ -22,7 +22,7 @@ void printHeaderLinkedList(int printNum) {
 	cout << "----------------------------------------------" << endl;
 }
 
-void printPersonInfoLinkedList(PERSONALINFO *info, int printNum) {
+void printPersonInfoLinkedList(PersonalInfo *info, int printNum) {
 	if (printNum != FALSE) {
 		//std::cout << "%-4d  %-7s  %-12s  %-50s", printNum, info->name, info->phone, info->address << std::endl;
 		cout.width(4);
@@ -50,16 +50,16 @@ void printPersonInfoLinkedList(PERSONALINFO *info, int printNum) {
 	}
 }
 
-void List::printLinedList() {
+void List::print() {
 	int number = 1;
-	NODE *target;
+	Node *target;
 
 	printHeaderLinkedList(TRUE);
 
-	target = this->moveFirstLinkedList();
-	while (this->isTailLinkedList() != TRUE) {
+	target = this->moveFirst();
+	while (this->isTail() != TRUE) {
 		printPersonInfoLinkedList(target->info, number);
-		target = this->nextLinkedList();
+		target = this->moveNext();
 		number++;
 	}
 }
@@ -67,15 +67,15 @@ void List::printLinedList() {
 int main(void) {
 	List *list = new List();
 
-	PERSONALINFO info1 = { "aaa", "0001110000", "xxx" };
-	PERSONALINFO info2 = { "bbb", "0002220000", "yyy" };
-	PERSONALINFO info3 = { "ccc", "0003330000", "zzz" };
+	PersonalInfo info1 = { "aaa", "0001110000", "xxx" };
+	PersonalInfo info2 = { "bbb", "0002220000", "yyy" };
+	PersonalInfo info3 = { "ccc", "0003330000", "zzz" };
 
-	list->appendLinkedList(&info1);
-	list->appendLinkedList(&info2);
-	list->insertLinkedList(1, &info3);
+	list->append(info1);
+	list->append(info2);
+	list->insert(1, info3);
 
-	list->printLinedList();
+	list->print();
 
 	delete list;
 
@@ -84,57 +84,61 @@ int main(void) {
 // debug
 
 List::List() {
-	this->head = new NODE;
-	this->tail = new NODE;
+	this->head = new Node;
+	this->tail = new Node;
 
 	this->head->next = this->tail;
-	this->tail->next = NULL;
+	//this->tail->next = NULL;
+	this->tail->next = nullptr;
 	this->pos = this->head->next;
 	this->length = 0;
 }
 
 List::~List() {
 	if (this->length > 0) {
-		this->deleteAllLinkedList();
+		this->eraseAll();
 	}
 
 	delete this->head;
 	delete this->tail;
 
-	this->pos = NULL;
+	//this->pos = NULL;
+	this->pos = nullptr;
 	this->length = 0;
 }
 
-void List::appendLinkedList(PERSONALINFO* p_info) {
-	NODE *last = this->moveLastLinkedList();
-	NODE *newNode = new NODE;
+void List::append(PersonalInfo &info) {
+	Node *last = this->moveLast();
+	Node *newNode = new Node;
 
-	newNode->info = new PERSONALINFO;
-	strcpy(newNode->info->name, p_info->name);
-	strcpy(newNode->info->phone, p_info->phone);
-	strcpy(newNode->info->address, p_info->address);
-	this->length++;
-
+	newNode->info = new PersonalInfo;
+	newNode->info->name, info.name;
+	newNode->info->phone, info.phone;
+	newNode->info->address, info.address;
+	
 	newNode->next = last->next;
 	last->next = newNode;
 
 	this->pos = newNode;
+	this->length++;
 
-	last = NULL;
-	newNode = NULL;
+	//last = NULL;
+	last = nullptr;
+	//newNode = NULL;
+	newNode = nullptr;
 }
 
-NODE* List::moveToBeforeNodeLinkedList(int index) {
-	NODE *target;
+Node* List::moveToBeforeNode(int index) {
+	Node *target;
 	int i = 0;
 
 	if (index <= 0) {
 		target = this->head;
 	}
 	else {
-		target = this->moveFirstLinkedList();
+		target = this->moveFirst();
 		while (i < index - 1) {
-			target = this->nextLinkedList();
+			target = this->moveNext();
 			i++;
 		}
 	}
@@ -142,90 +146,95 @@ NODE* List::moveToBeforeNodeLinkedList(int index) {
 	return target;
 }
 
-void List::insertLinkedList(int index, PERSONALINFO* p_info) {
-	NODE *target;
-	NODE *newNode = new NODE;
+void List::insert(int index, PersonalInfo &info) {
+	Node *target;
+	Node *newNode = new Node;
 
-	target = this->moveToBeforeNodeLinkedList(index);
+	target = this->moveToBeforeNode(index);
 
-	newNode->info = new PERSONALINFO;
-	strcpy(newNode->info->name, p_info->name);
-	strcpy(newNode->info->phone, p_info->phone);
-	strcpy(newNode->info->address, p_info->address);
-	this->length++;
+	newNode->info = new PersonalInfo;
+	newNode->info->name = info.name;
+	newNode->info->phone = info.phone;
+	newNode->info->address = info.address;
+
 
 	newNode->next = target->next;
 	target->next = newNode;
+	this->length++;
 
 	this->pos = newNode;
 
-	target = NULL;
-	newNode = NULL;
+	//target = NULL;
+	target = nullptr;
+	//newNode = NULL;
+	newNode = nullptr;
 }
 
-void List::deleteLinkedList(int index) {
-	NODE *before;
-	NODE *target;
+void List::erase(int index) {
+	Node *before;
+	Node *target;
 
-	before = this->moveToBeforeNodeLinkedList(index);
+	before = this->moveToBeforeNode(index);
 
 	target = before->next;
 	before->next = target->next;
 
 	delete target->info;
-	target->next = NULL;
+	//target->next = NULL;
+	target->next = nullptr;
 	delete target;
 
 	this->pos = before;
 	this->length--;
 
-	before = NULL;
-	target = NULL;
+	//before = NULL;
+	before = nullptr;
+	//target = NULL;
+	target = nullptr;
 }
 
-void List::deleteAllLinkedList() {
+void List::eraseAll() {
 
 	if (this->length == 0) {
 		return;
 	}
 
-	while (this->getLengthLinkedList() > 0) {
-		this->deleteLinkedList(0);
+	while (this->getLength() > 0) {
+		this->erase(0);
 	}
 
 	this->pos = this->head;
 }
 
-PERSONALINFO List::viewAtLinkedList(int index) {
-	PERSONALINFO info;
-	NODE *target;
+PersonalInfo List::viewAt(int index) {
+	PersonalInfo info;
+	Node *target;
 
-	target = this->moveToBeforeNodeLinkedList(index)->next;
+	target = this->moveToBeforeNode(index)->next;
 
-	strcpy(info.name, target->info->name);
-	strcpy(info.phone, target->info->phone);
-	strcpy(info.address, target->info->address);
+	info.name = target->info->name;
+	info.phone = target->info->phone;
+	info.address = target->info->address;
 
 	this->pos = target;
-
-	target = NULL;
-
+	//target = NULL;
+	target = nullptr;
 	return info;
 }
 
-NODE* List::moveFirstLinkedList() {
+Node* List::moveFirst() {
 	this->pos = this->head->next;
 
 	return this->pos;
 }
 
-NODE* List::moveLastLinkedList() {
-	NODE *target;
+Node* List::moveLast() {
+	Node *target;
 	if (this->length <= 0) {
 		target = this->head;
 	}
 	else {
-		target = this->moveToBeforeNodeLinkedList(this->length - 1)->next;
+		target = this->moveToBeforeNode(this->length - 1)->next;
 	}
 
 	this->pos = target;
@@ -233,45 +242,46 @@ NODE* List::moveLastLinkedList() {
 	return target;
 }
 
-NODE* List::nextLinkedList() {
+Node* List::moveNext() {
 	this->pos = this->pos->next;
 
 	return this->pos;
 }
 
-int List::isTailLinkedList() {
+int List::isTail() {
 	int isTail = FALSE;
 
-	if (this->pos->next == NULL) {
+	//if (this->pos->next == NULL) {
+	if (this->pos->next == nullptr) {
 		isTail = TRUE;
 	}
 
 	return isTail;
 }
 
-int List::getLengthLinkedList() {
+int List::getLength() {
 	return this->length;
 }
 
-NODE* List::getNodeLinkedList(int index) {
-	NODE *target;
+Node* List::getNode(int index) {
+	Node *target;
 
-	target = this->moveToBeforeNodeLinkedList(index)->next;
+	target = this->moveToBeforeNode(index)->next;
 
 	return target;
 }
 
-int List::findNameLinkedList(char* p_name) {
+int List::findName(string name) {
 	int index = 0;
 	int isFound = FALSE;
 
-	this->moveFirstLinkedList();
-	while (this->isTailLinkedList() != TRUE) {
-		if (strcmp(this->pos->info->name, p_name) == 0) {
+	this->moveFirst();
+	while (this->isTail() != TRUE) {
+		if (this->pos->info->name == name) {
 			isFound = TRUE;
 			break;
 		}
-		this->nextLinkedList();
+		this->moveNext();
 		index++;
 	}
 
