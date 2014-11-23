@@ -10,6 +10,7 @@
 
 using namespace std;
 
+/*
 //debug 
 void printHeaderLinkedList(int printNum) {
 	cout << "----------------------------------------------" << endl;
@@ -82,6 +83,7 @@ int main(void) {
 	return 0;
 }
 // debug
+*/
 
 List::List() {
 	this->head = new Node;
