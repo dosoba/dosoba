@@ -114,9 +114,9 @@ void List::append(PersonalInfo &info) {
 	Node *newNode = new Node;
 
 	newNode->info = new PersonalInfo;
-	newNode->info->name, info.name;
-	newNode->info->phone, info.phone;
-	newNode->info->address, info.address;
+	newNode->info->name = info.name;
+	newNode->info->phone = info.phone;
+	newNode->info->address = info.address;
 	
 	newNode->next = last->next;
 	last->next = newNode;

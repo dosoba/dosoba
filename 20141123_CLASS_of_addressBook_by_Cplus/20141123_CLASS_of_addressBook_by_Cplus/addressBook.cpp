@@ -316,6 +316,10 @@ void AddressBook::save() {
 		}
 		file.close();
 	}
+
+	//아래 코드가 필요한지 확인이 필요하다.
+	target = nullptr;
+
 	cout << "addressbook.dat 파일에 저장하였습니다." << endl;
 }
 
@@ -369,13 +373,4 @@ void AddressBook::testSetup() {
 	for (index = 0; index < 10; index++) {
 		this->list->append(sample[index]);
 	}
-
-	/*
-	PersonalInfo *info = new PersonalInfo;
-	info->name = "kimsejoong";
-	info->phone = "01031648410";
-	info->address = "seoul";
-
-	this->list->append(*info);
-	*/
 }
