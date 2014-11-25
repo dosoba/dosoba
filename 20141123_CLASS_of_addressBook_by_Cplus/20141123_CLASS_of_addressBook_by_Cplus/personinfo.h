@@ -16,6 +16,10 @@ public:
 	string name;
 	string phone;
 	string address;
+public:
+	PersonalInfo& operator= (PersonalInfo& info);
+	bool operator== (PersonalInfo& info);
+	ostream& operator<< (ostream& os);
 };
 
 #endif /* PERSONINFO_H_ */
