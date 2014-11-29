@@ -90,7 +90,6 @@ List::List() {
 	this->tail = new Node;
 
 	this->head->next = this->tail;
-	//this->tail->next = NULL;
 	this->tail->next = nullptr;
 	this->pos = this->head->next;
 	this->length = 0;
@@ -104,7 +103,6 @@ List::~List() {
 	delete this->head;
 	delete this->tail;
 
-	//this->pos = NULL;
 	this->pos = nullptr;
 	this->length = 0;
 }
@@ -113,10 +111,12 @@ void List::append(PersonalInfo &info) {
 	Node *last = this->moveLast();
 	Node *newNode = new Node;
 
-	newNode->info = new PersonalInfo;
-	newNode->info->name = info.name;
-	newNode->info->phone = info.phone;
-	newNode->info->address = info.address;
+	//newNode->info = new PersonalInfo;
+	//newNode->info->name = info.name;
+	//newNode->info->phone = info.phone;
+	//newNode->info->address = info.address;
+	//newNode = info;
+	newNode->info = new PersonalInfo(info);
 	
 	newNode->next = last->next;
 	last->next = newNode;
@@ -124,9 +124,7 @@ void List::append(PersonalInfo &info) {
 	this->pos = newNode;
 	this->length++;
 
-	//last = NULL;
 	last = nullptr;
-	//newNode = NULL;
 	newNode = nullptr;
 }
 
@@ -154,11 +152,12 @@ void List::insert(int index, PersonalInfo &info) {
 
 	target = this->moveToBeforeNode(index);
 
-	newNode->info = new PersonalInfo;
-	newNode->info->name = info.name;
-	newNode->info->phone = info.phone;
-	newNode->info->address = info.address;
-
+	//newNode->info = new PersonalInfo;
+	//newNode->info->name = info.name;
+	//newNode->info->phone = info.phone;
+	//newNode->info->address = info.address;
+	//newNode = info;
+	newNode->info = new PersonalInfo(info);
 
 	newNode->next = target->next;
 	target->next = newNode;
@@ -166,9 +165,7 @@ void List::insert(int index, PersonalInfo &info) {
 
 	this->pos = newNode;
 
-	//target = NULL;
 	target = nullptr;
-	//newNode = NULL;
 	newNode = nullptr;
 }
 
@@ -182,16 +179,13 @@ void List::erase(int index) {
 	before->next = target->next;
 
 	delete target->info;
-	//target->next = NULL;
 	target->next = nullptr;
 	delete target;
 
 	this->pos = before;
 	this->length--;
 
-	//before = NULL;
 	before = nullptr;
-	//target = NULL;
 	target = nullptr;
 }
 
@@ -214,12 +208,12 @@ PersonalInfo List::viewAt(int index) {
 
 	target = this->moveToBeforeNode(index)->next;
 
-	info.name = target->info->name;
-	info.phone = target->info->phone;
-	info.address = target->info->address;
+	//info.name = target->info->name;
+	//info.phone = target->info->phone;
+	//info.address = target->info->address;
+	info = *(target->info);
 
 	this->pos = target;
-	//target = NULL;
 	target = nullptr;
 	return info;
 }
@@ -253,7 +247,6 @@ Node* List::moveNext() {
 int List::isTail() {
 	int isTail = FALSE;
 
-	//if (this->pos->next == NULL) {
 	if (this->pos->next == nullptr) {
 		isTail = TRUE;
 	}
@@ -279,7 +272,7 @@ int List::findName(string name) {
 
 	this->moveFirst();
 	while (this->isTail() != TRUE) {
-		if (this->pos->info->name == name) {
+		if (*(this->pos->info) == name) {
 			isFound = TRUE;
 			break;
 		}

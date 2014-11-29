@@ -69,13 +69,21 @@ int AddressBook::isEmpty() {
 void AddressBook::input() {
 	PersonalInfo info;
 	char yesno;
+	string name;
+	string phone;
+	string address;
 
 	cout << "이름 : ";
-	cin >> info.name;
+	cin >> name;
+	info.setName(name);
+
 	cout << "전화번호 : ";
-	cin >> info.phone;
+	cin >> phone;
+	info.setPhone(phone);
+
 	cout << "주소 : ";
-	cin >> info.address;
+	cin >> address;
+	info.setAddress(address);
 
 	cout << "입력된 정보" << endl;
 	this->printHeader(FALSE);
@@ -126,11 +134,15 @@ void AddressBook::remove() {
 }
 
 void AddressBook::modify() {
-	string name;
+	//string name;
 	int modifyIndex = -1;
 	char yesno;
 	PersonalInfo info;
 	Node *target;
+
+	string name;
+	string phone;
+	string address;
 
 	if (this->isEmpty() == TRUE) {
 		this->print_error(ERROR_EMPTY);
@@ -156,11 +168,16 @@ void AddressBook::modify() {
 
 	if (yesno == 'y') {
 		cout << "이름 : ";
-		cin >> info.name;
+		cin >> name;
+		info.setName(name);
+
 		cout << "전화번호 : ";
-		cin >> info.phone;
+		cin >> phone;		
+		info.setPhone(phone);
+
 		cout << "주소 : ";
-		cin >> info.address;
+		cin >> address;
+		info.setAddress(address);
 
 		cout << "수정된 정보\n";
 		this->printHeader(FALSE);
@@ -168,9 +185,9 @@ void AddressBook::modify() {
 
 		target = this->list->getNode(modifyIndex);
 
-		target->info->name = info.name;
-		target->info->phone = info.phone;
-		target->info->address = info.address;
+		target->info->setName(info.getName());
+		target->info->setPhone(info.getPhone());
+		target->info->setAddress(info.getAddress());
 
 		cout << "수정되었습니다." << endl;
 	}
@@ -215,32 +232,9 @@ void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
 		cout.width(4);
 		cout << left << printNum;
 		cout << "  ";
-		
-		cout.width(7);
-		cout << left << info.name;
-		cout << "  ";
-
-		cout.width(12);
-		cout << left << info.phone;
-		cout << "  ";
-
-		cout.width(50);
-		cout << left << info.address;
-		cout << endl;
 	}
-	else {
-		cout.width(8);
-		cout << left << info.name;
-		cout << "  ";
-
-		cout.width(12);
-		cout << left << info.phone;
-		cout << "  ";
-
-		cout.width(50);
-		cout << left << info.address;
-		cout << endl;
-	}
+	cout << info;
+	cout << endl;
 }
 
 void AddressBook::printPersonInfoPointer(PersonalInfo *info, int printNum) {
@@ -248,32 +242,22 @@ void AddressBook::printPersonInfoPointer(PersonalInfo *info, int printNum) {
 		cout.width(4);
 		cout << left << printNum;
 		cout << "  ";
-
-		cout.width(7);
-		cout << left << info->name;
-		cout << "  ";
-
-		cout.width(12);
-		cout << left << info->phone;
-		cout << "  ";
-
-		cout.width(50);
-		cout << left << info->address;
-		cout << endl;
 	}
-	else {
-		cout.width(8);
-		cout << left << info->name;
-		cout << "  ";
+	cout << (*info);
+	cout << endl;
+	/*
+	cout.width(8);
+	cout << left << info->getName();
+	cout << "  ";
 
-		cout.width(12);
-		cout << left << info->phone;
-		cout << "  ";
+	cout.width(12);
+	cout << left << info->getPhone();
+	cout << "  ";
 
-		cout.width(50);
-		cout << left << info->address;
-		cout << endl;
-	}
+	cout.width(50);
+	cout << left << info->getAddress();
+	cout << endl;
+	*/
 }
 
 void AddressBook::printAll() {
@@ -309,9 +293,9 @@ void AddressBook::save() {
 
 	if (file.is_open()) {
 		while (this->list->isTail() != TRUE) {
-			file << target->info->name << endl;			
-			file << target->info->phone << endl;
-			file << target->info->address << endl;
+			file << target->info->getName() << endl;			
+			file << target->info->getPhone() << endl;
+			file << target->info->getAddress() << endl;
 			target = this->list->moveNext();
 		}
 		file.close();
@@ -327,6 +311,10 @@ void AddressBook::load() {
 	ifstream file;
 	PersonalInfo info;
 
+	string name;
+	string phone;
+	string address;
+
 	this->list->eraseAll();
 	
 	file.open("addressbook.dat", ios::in);
@@ -338,11 +326,16 @@ void AddressBook::load() {
 
 	if (file.is_open()) {
 		while (!file.eof()) {
-			getline(file, info.name);
-			getline(file, info.phone);
-			getline(file, info.address);
+			getline(file, name);
+			info.setName(name);
 
-			if (info.name == "") {
+			getline(file, phone);
+			info.setPhone(phone);
+
+			getline(file, address);
+			info.setAddress(address);
+
+			if (info.getName() == "") {
 				file.close();
 				break;
 			}
@@ -357,18 +350,61 @@ void AddressBook::load() {
 void AddressBook::testSetup() {
 	int index = 0;
 
+	/*
 	PersonalInfo sample[10] = {
-			{ "aaa", "0001112222", "abc" },
-			{ "bbb", "0001113333", "abc" },
-			{ "ccc", "0001114444", "abc" },
-			{ "ddd", "0001115555", "abc" },
-			{ "eee", "0001116666", "abc" },
-			{ "fff", "0001117777", "abc" },
-			{ "ggg", "0001118888", "abc" },
-			{ "hhh", "0001119999", "abc" },
-			{ "iii", "0001110000", "abc" },
-			{ "jjj", "0002220000", "abc" }
+	{ "aaa", "0001112222", "abc" },
+	{ "bbb", "0001113333", "abc" },
+	{ "ccc", "0001114444", "abc" },
+	{ "ddd", "0001115555", "abc" },
+	{ "eee", "0001116666", "abc" },
+	{ "fff", "0001117777", "abc" },
+	{ "ggg", "0001118888", "abc" },
+	{ "hhh", "0001119999", "abc" },
+	{ "iii", "0001110000", "abc" },
+	{ "jjj", "0002220000", "abc" }
 	};
+	*/
+	PersonalInfo sample[10];
+
+	sample[0].setName("aaa");
+	sample[0].setPhone("0001112222");
+	sample[0].setAddress("acb");
+
+	sample[1].setName("bbb");
+	sample[1].setPhone("0001113333");
+	sample[1].setAddress("abc");
+
+	sample[2].setName("ccc");
+	sample[2].setPhone("0001114444");
+	sample[2].setAddress("abc");
+	
+	sample[3].setName("ddd");
+	sample[3].setPhone("0001115555");
+	sample[3].setAddress("abc");
+
+	sample[4].setName("eee");
+	sample[4].setPhone("0001116666");
+	sample[4].setAddress("abc");
+
+	sample[5].setName("fff");
+	sample[5].setPhone("0001117777");
+	sample[5].setAddress("abc");
+	
+	sample[6].setName("ggg");
+	sample[6].setPhone("0001118888");
+	sample[6].setAddress("abc");
+	
+	sample[7].setName("hhh");
+	sample[7].setPhone("0001119999");
+	sample[7].setAddress("abc");
+
+	sample[8].setName("iii");
+	sample[8].setPhone("0001110000");
+	sample[8].setAddress("abc");
+
+	sample[9].setName("jjj");
+	sample[9].setPhone("0002220000");
+	sample[9].setAddress("abc");
 	
 	for (index = 0; index < 10; index++) {
 		this->list->append(sample[index]);

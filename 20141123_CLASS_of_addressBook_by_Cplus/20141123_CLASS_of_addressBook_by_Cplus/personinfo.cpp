@@ -51,7 +51,44 @@ bool PersonalInfo::operator== (string& info) {
 }
 
 //overloading operator <<
+/*
 ostream& PersonalInfo::operator<< (ostream& os) {
-	os << name << phone << address;
+	os << os.width(8) << left << name << "  ";
+	os << os.width(12) << left << phone << "  ";
+	os << os.width(50) << left << address;
 	return os;
+}
+*/
+
+//overloading operator <<
+ostream& operator<< (ostream& os, PersonalInfo& info) {
+	os << os.width(8) << left << info.name << "  ";
+	os << os.width(12) << left << info.phone << "  ";
+	os << os.width(50) << left << info.address;
+	return os;
+}
+
+// need to definition for accessing private variables
+void PersonalInfo::setName(string name) {
+	this->name = name;
+}
+
+string PersonalInfo::getName() {
+	return name;
+}
+
+void PersonalInfo::setPhone(string phone) {
+	this->phone = phone;
+}
+
+string PersonalInfo::getPhone() {
+	return phone;
+}
+
+void PersonalInfo::setAddress(string address) {
+	this->address = address;
+}
+
+string PersonalInfo::getAddress() {
+	return address;
 }
