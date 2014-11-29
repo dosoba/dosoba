@@ -1,4 +1,6 @@
 1. addressBook.c / addressBook.h 파일 클래스로 변경하기 - 완료
+1.1. ㅁ
+1.2. ㅁ
 2. Node 클래스도 멤버 변수는 public으로 구현 - 완료
 3. 복사 생성자 구현 - 183page 참고  - 잘못된 구현
 4. 연산자 overriding 구현 = , << , == - 구현만 하고 사용
