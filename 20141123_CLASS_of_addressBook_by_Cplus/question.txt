@@ -108,8 +108,15 @@ void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
 	cout << endl;
 	
 }
+
+
 11월 29일
 operator<< 를 사용할때는 friend 함수로 class내에 선언하고 구현해야 한다.
+=>하지만 ostream에는 일반적인 자료형에 대해서만 <<연산자 오버로딩이 되어있고,
+사용자정의 자료형에 대해서는 <<오버로딩이 되어있지 않다.
+어떤 사용자정의형이 만들어질지 모르니 구현이 안되있는건 당연한 것이다.
+
+//클래스 정의부
 class PersonalInfo {
 	...
 	...
