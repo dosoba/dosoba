@@ -108,3 +108,18 @@ void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
 	cout << endl;
 	
 }
+11월 29일
+operator<< 를 사용할때는 friend 함수로 class내에 선언하고 구현해야 한다.
+class PersonalInfo {
+	...
+	...
+	friend ostream& operator<< (ostream& os, PersonalInfo& info);
+}
+
+//overloading operator <<
+ostream& operator<< (ostream& os, PersonalInfo& info) {
+	os << os.width(8) << left << info.name << "  ";
+	os << os.width(12) << left << info.phone << "  ";
+	os << os.width(50) << left << info.address;
+	return os;
+}
