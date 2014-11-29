@@ -17,6 +17,13 @@ public:
 	string phone;
 	string address;
 public:
+	// default constructor
+	PersonalInfo();
+
+	// copy constructor
+	PersonalInfo(PersonalInfo &info);
+
+	// overloading operators
 	PersonalInfo& operator= (PersonalInfo& info);
 	bool operator== (PersonalInfo& info);
 	ostream& operator<< (ostream& os);
