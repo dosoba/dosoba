@@ -40,6 +40,16 @@ bool PersonalInfo::operator== (PersonalInfo& info) {
 	}	
 }
 
+//overloading operator ==
+bool PersonalInfo::operator== (string& info) {
+	if (name == info) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 //overloading operator <<
 ostream& PersonalInfo::operator<< (ostream& os) {
 	os << name << phone << address;

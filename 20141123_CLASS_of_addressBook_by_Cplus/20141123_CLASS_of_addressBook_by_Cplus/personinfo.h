@@ -26,6 +26,7 @@ public:
 	// overloading operators
 	PersonalInfo& operator= (PersonalInfo& info);
 	bool operator== (PersonalInfo& info);
+	bool operator== (string& info);
 	ostream& operator<< (ostream& os);
 };
 
