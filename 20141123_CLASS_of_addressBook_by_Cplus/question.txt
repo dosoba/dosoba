@@ -170,3 +170,33 @@ bool PersonalInfo::operator== (string& info) {
 		return false;
 	}
 }
+
+<3번> operator= 아래와 같이 변경
+//overloading operator = 
+PersonalInfo& PersonalInfo::operator= (PersonalInfo& info) {
+	name = info.name;
+	phone = info.phone;
+	address = info.address;
+
+	return *this;
+}
+
+PersonalInfo List::viewAt(int index) {
+	PersonalInfo info;
+	Node *target;
+
+	target = this->moveToBeforeNode(index)->next;
+
+	//변경전
+	//info.name = target->info->name;
+	//info.phone = target->info->phone;
+	//info.address = target->info->address;
+	//변경 후
+	info = *(target->info);
+
+	this->pos = target;
+	target = nullptr;
+	return info;
+}
+
+<4> 
