@@ -223,5 +223,22 @@ int List::findName(string name) {
 	return index;
 }
 
-<4> 파일 로드에서 잘못된 값이 출력됨  - 진행중
+<4> 파일 로드에서 잘못된 값이 출력됨  - 완료
+<1>번에서 처럼 코드를 구성해서 출력시 잘못된 문제가 발생함 (0이 출력된다?)
+이유는 os.width(8)등은 ostream으로 출력하기 전에 설정해야 한다.
 
+변경 전
+os << os.width(8) << left << info.name << "  ";
+변경 후
+os.width(8);
+os << left << info.name << "  ";
+사용성 추가 - setw라는 manipulators를 사용함. 단, <iomanip>를 추가해야 함.
+os << setw(8) << left << info.name << "  ";
+
+ostream& operator<< (ostream& os, PersonalInfo& info) {
+	os << setw(8) << left << info.name << "  ";
+	os << setw(12) << left << info.phone << "  ";
+	os << setw(50) << left << info.address;
+
+	return os;
+}
