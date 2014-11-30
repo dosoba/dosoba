@@ -6,6 +6,7 @@
 
 #define  _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include "addressbook.h"
 
@@ -219,18 +220,18 @@ void AddressBook::search() {
 void AddressBook::printHeader(int printNum) {
 	cout << "----------------------------------------------" << endl;
 	if (printNum == TRUE) {
-		cout << "번호  이름     전화번호      주소" << endl;
+		cout << "번호  이름      전화번호      주소" << endl;
 	}
 	else {
-		cout << "이름     전화번호      주소" << endl;
+		cout << "이름      전화번호      주소" << endl;
 	}
 	cout << "----------------------------------------------" << endl;
 }
 
 void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
 	if (printNum != FALSE) {
-		cout.width(4);
-		cout << left << printNum;
+		//cout.width(4);
+		cout << setw(4) << left << printNum;
 		cout << "  ";
 	}
 	cout << info;
@@ -239,25 +240,12 @@ void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
 
 void AddressBook::printPersonInfoPointer(PersonalInfo *info, int printNum) {
 	if (printNum != FALSE) {
-		cout.width(4);
-		cout << left << printNum;
+		//cout.width(4);
+		cout << setw(4) << left << printNum;
 		cout << "  ";
 	}
 	cout << (*info);
-	cout << endl;
-	/*
-	cout.width(8);
-	cout << left << info->getName();
-	cout << "  ";
-
-	cout.width(12);
-	cout << left << info->getPhone();
-	cout << "  ";
-
-	cout.width(50);
-	cout << left << info->getAddress();
-	cout << endl;
-	*/
+	//cout << endl;
 }
 
 void AddressBook::printAll() {

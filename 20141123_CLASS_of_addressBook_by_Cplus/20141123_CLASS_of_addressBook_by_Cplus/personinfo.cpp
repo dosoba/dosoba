@@ -5,6 +5,7 @@
 **********************/
 
 #include <iostream>
+#include <iomanip>
 #include "personinfo.h"
 
 //default constructor
@@ -62,9 +63,18 @@ ostream& PersonalInfo::operator<< (ostream& os) {
 
 //overloading operator <<
 ostream& operator<< (ostream& os, PersonalInfo& info) {
-	os << os.width(8) << left << info.name << "  ";
-	os << os.width(12) << left << info.phone << "  ";
-	os << os.width(50) << left << info.address;
+	/*
+	os.width(8);
+	os << left << info.name << "  ";
+	os.width(12);
+	os << left << info.phone << "  ";
+	os.width(50);
+	os << left << info.address;
+	*/
+	os << setw(8) << left << info.name << "  ";
+	os << setw(12) << left << info.phone << "  ";
+	os << setw(50) << left << info.address;
+
 	return os;
 }
 
