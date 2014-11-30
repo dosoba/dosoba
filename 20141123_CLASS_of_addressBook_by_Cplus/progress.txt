@@ -128,9 +128,9 @@ void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
 * 스프린트 기간  : 11월 27일 ~ 12월 05일
 * 스트린트 user stories :
 *	연산자 오버로딩(=, ==, <<) 구현 완료된 부분 코드에 적용 - 11/29
-*	PersonalInfo 클래스내 멤버 변수는 private으로 구현		- 11/29
-*	PersonalInfo 멤버 변수마다 get, set함수구현	- 11/29
-*	<<연산자 관련해서 출력시 발생하는 오류 수정			- 11/30
+*	PersonalInfo 클래스내 멤버 변수는 private으로 구현	- 11/29
+*	PersonalInfo 멤버 변수마다 get, set함수구현		- 11/29
+*	<<연산자 관련해서 출력시 발생하는 오류 수정		- 11/30
 *****************************************************************/
 
 <1번> operator<<
