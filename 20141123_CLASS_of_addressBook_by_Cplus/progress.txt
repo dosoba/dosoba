@@ -272,8 +272,8 @@ ostream& operator<< (ostream& os, PersonalInfo& info) {
 * 스프린트 기간  : 11월 27일 ~ 12월 04일
 * 스트린트 user stories :
 *	change to Template
-*	
-*	
+*	1. addressbook::addressbook()
+*	2. All LinkedList
 *	
 *****************************************************************************************************************************/
 [example]
