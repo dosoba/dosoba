@@ -271,8 +271,58 @@ ostream& operator<< (ostream& os, PersonalInfo& info) {
 * 스터디 일정 : 12월 05일
 * 스프린트 기간  : 11월 27일 ~ 12월 04일
 * 스트린트 user stories :
-*	
+*	change to Template
 *	
 *	
 *	
 *****************************************************************************************************************************/
+[example]
+template <class TYPE>
+class node {
+public:
+	TYPE *data;
+	node *next;
+};
+
+
+class node {
+public:
+	personInfo *info;
+	node *next;
+};
+
+template <class TYPE>
+int linkedlist::find(node<TYPE>& data) {
+	int index = 0;
+	bool isFound = false;
+
+	this->moveFirst();
+	while ( this->isTail() != true ) {
+		if ( *(this->pos->data) == data ) {
+			isFound = true;
+			break;
+		}
+		this->moveNext();
+		index++;
+	}
+
+	if ( isFound == false ) {
+		index = -1;
+	}
+
+	return index;
+}
+
+template <class TYPE>
+linkedlist::linkedlist() {
+	this->head = new node<TYPE>;
+	this->tail = new node<TYPE>;
+
+	this->head->next = this->tail;
+	this->tail->next = NULL;
+	this->pos = this->head->next;
+	this->length = 0;
+}
+
+linkedlist * list;
+list = new linkedlist<personInfo>;
