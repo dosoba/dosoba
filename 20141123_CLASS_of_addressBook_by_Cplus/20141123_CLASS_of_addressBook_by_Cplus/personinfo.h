@@ -22,6 +22,9 @@ public:
 
 	// copy constructor
 	PersonalInfo(PersonalInfo &info);
+	
+	// destructor
+	~PersonalInfo();
 
 	// overloading operators
 	PersonalInfo& operator= (PersonalInfo& info);
