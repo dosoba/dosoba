@@ -59,4 +59,19 @@ linkedlist::linkedlist() {
 linkedlist * list;
 list = new linkedlist<personInfo>;
 *****************************************************************************************************************************/
-개인 스터티 진행중...
+2014.12.15
+- 1차로 수정했는데 아래 에러가 발생함
+1>main.obj : error LNK2019: unresolved external symbol "public: __thiscall AddressBook<class PersonalInfo>::AddressBook<class PersonalInfo>(void)" (??0?$AddressBook@VPersonalInfo@@@@QAE@XZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::printMainMenu(void)" (?printMainMenu@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::print_finish(void)" (?print_finish@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::print_error(int)" (?print_error@?$AddressBook@VPersonalInfo@@@@QAEXH@Z) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::input(void)" (?input@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::remove(void)" (?remove@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::modify(void)" (?modify@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::search(void)" (?search@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::printAll(void)" (?printAll@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::save(void)" (?save@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::load(void)" (?load@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::testSetup(void)" (?testSetup@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
+1>C:\Users\home\Documents\GitHub\dosoba\20141214_Template_addressBook_by_Cplus\Debug\20141214_Template_addressBook_by_Cplus.exe : fatal error LNK1120: 12 unresolved externals
+어디가 문제인지 확인이 필요하다
