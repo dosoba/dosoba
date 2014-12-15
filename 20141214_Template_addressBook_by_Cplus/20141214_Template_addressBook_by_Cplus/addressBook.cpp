@@ -12,15 +12,18 @@
 
 using namespace std;
 
-AddressBook::AddressBook() {
-	this->list = new List;
+template <class Type>
+AddressBook<Type>::AddressBook() {
+	this->list = new List<Type>;
 }
 
-AddressBook::~AddressBook() {
+template <class Type>
+AddressBook<Type>::~AddressBook() {
 	delete this->list;
 }
 
-void AddressBook::printMainMenu() {
+template <class Type>
+void AddressBook<Type>::printMainMenu() {
 	cout << "1. 주소정보를 입력한다." << endl;
 	cout << "2. 주소정보를 삭제한다." << endl;
 	cout << "3. 주소정보를 수정한다." << endl;
@@ -31,11 +34,13 @@ void AddressBook::printMainMenu() {
 	cout << "0. 종료한다." << endl;
 }
 
-void AddressBook::print_finish() {
+template <class Type>
+void AddressBook<Type>::print_finish() {
 	cout << "프로그램을 종료합니다." << endl;
 }
 
-void AddressBook::print_error(int error) {
+template <class Type>
+void AddressBook<Type>::print_error(int error) {
 	switch (error) {
 	case ERROR_NO_MENU:
 		cout << "없는 번호를 입력하였습니다." << endl;
@@ -57,7 +62,8 @@ void AddressBook::print_error(int error) {
 	}
 }
 
-int AddressBook::isEmpty() {
+template <class Type>
+int AddressBook<Type>::isEmpty() {
 	int isEmpty = TRUE;
 
 	if ( this->list->getLength() > 0) {
@@ -67,8 +73,9 @@ int AddressBook::isEmpty() {
 	return isEmpty;
 }
 
-void AddressBook::input() {
-	PersonalInfo info;
+template <class Type>
+void AddressBook<Type>::input() {
+	Type info;
 	char yesno;
 	string name;
 	string phone;
@@ -100,7 +107,8 @@ void AddressBook::input() {
 	}
 }
 
-void AddressBook::remove() {
+template <class Type>
+void AddressBook<Type>::remove() {
 	string name;
 	int removeIndex = -1;
 	char yesno;
@@ -134,12 +142,13 @@ void AddressBook::remove() {
 	}
 }
 
-void AddressBook::modify() {
+template <class Type>
+void AddressBook<Type>::modify() {
 	//string name;
 	int modifyIndex = -1;
 	char yesno;
-	PersonalInfo info;
-	Node *target;
+	Type info;
+	Node<Type> *target;
 
 	string name;
 	string phone;
@@ -194,7 +203,8 @@ void AddressBook::modify() {
 	}
 }
 
-void AddressBook::search() {
+template <class Type>
+void AddressBook<Type>::search() {
 	string name;
 	int foundIndex = -1;
 
@@ -217,7 +227,8 @@ void AddressBook::search() {
 	this->printPersonInfo(this->list->viewAt(foundIndex), FALSE);
 }
 
-void AddressBook::printHeader(int printNum) {
+template <class Type>
+void AddressBook<Type>::printHeader(int printNum) {
 	cout << "----------------------------------------------" << endl;
 	if (printNum == TRUE) {
 		cout << "번호  이름      전화번호      주소" << endl;
@@ -228,7 +239,8 @@ void AddressBook::printHeader(int printNum) {
 	cout << "----------------------------------------------" << endl;
 }
 
-void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
+template <class Type>
+void AddressBook<Type>::printPersonInfo(Type &info, int printNum) {
 	if (printNum != FALSE) {
 		//cout.width(4);
 		cout << setw(4) << left << printNum;
@@ -238,7 +250,8 @@ void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
 	cout << endl;
 }
 
-void AddressBook::printPersonInfoPointer(PersonalInfo *info, int printNum) {
+template <class Type>
+void AddressBook<Type>::printPersonInfoPointer(Type *info, int printNum) {
 	if (printNum != FALSE) {
 		//cout.width(4);
 		cout << setw(4) << left << printNum;
@@ -248,9 +261,10 @@ void AddressBook::printPersonInfoPointer(PersonalInfo *info, int printNum) {
 	//cout << endl;
 }
 
-void AddressBook::printAll() {
+template <class Type>
+void AddressBook<Type>::printAll() {
 	int number = 1;
-	Node *target;
+	Node<Type> *target;
 
 	if (this->isEmpty() == TRUE) {
 		this->print_error(ERROR_EMPTY);
@@ -266,9 +280,10 @@ void AddressBook::printAll() {
 	}
 }
 
-void AddressBook::save() {
+template <class Type>
+void AddressBook<Type>::save() {
 	ofstream file;
-	Node *target;
+	Node<Type> *target;
 
 	if (this->isEmpty() == TRUE) {
 		this->print_error(ERROR_EMPTY);
@@ -295,9 +310,10 @@ void AddressBook::save() {
 	cout << "addressbook.dat 파일에 저장하였습니다." << endl;
 }
 
-void AddressBook::load() {
+template <class Type>
+void AddressBook<Type>::load() {
 	ifstream file;
-	PersonalInfo info;
+	Type info;
 
 	string name;
 	string phone;
@@ -335,7 +351,8 @@ void AddressBook::load() {
 	cout << "addressbook.dat 파일을 불러왔습니다." << endl;
 }
 
-void AddressBook::testSetup() {
+template <class Type>
+void AddressBook<Type>::testSetup() {
 	int index = 0;
 
 	/*
@@ -352,7 +369,7 @@ void AddressBook::testSetup() {
 	{ "jjj", "0002220000", "abc" }
 	};
 	*/
-	PersonalInfo sample[10];
+	Type sample[10];
 
 	sample[0].setName("aaa");
 	sample[0].setPhone("0001112222");

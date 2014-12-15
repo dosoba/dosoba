@@ -15,33 +15,35 @@
 
 #include "personinfo.h"
 
+template <class Type>
 class Node {
 public:
-	PersonalInfo *info;
-	Node *next;
+	Type *info;
+	Node<Type> *next;
 };
 
+template <class Type>
 class List {
 private:
-	Node *head;
-	Node *tail;
-	Node *pos;
+	Node<Type> *head;
+	Node<Type> *tail;
+	Node<Type> *pos;
 	int length;
 public:
 	List();
 	~List();
-	void append(PersonalInfo&);
-	Node* moveToBeforeNode(int);
-	void insert(int, PersonalInfo&);
+	void append(Type&);
+	Node<Type>* moveToBeforeNode(int);
+	void insert(int, Type&);
 	void erase(int);
 	void eraseAll();
-	PersonalInfo viewAt(int);
-	Node* moveFirst();
-	Node* moveLast();
-	Node* moveNext();
+	Type viewAt(int);
+	Node<Type>* moveFirst();
+	Node<Type>* moveLast();
+	Node<Type>* moveNext();
 	int isTail();
 	int getLength();
-	Node* getNode(int);
+	Node<Type>* getNode(int);
 	int findName(string);
 	void print();
 };

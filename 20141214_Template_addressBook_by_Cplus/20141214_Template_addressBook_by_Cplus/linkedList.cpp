@@ -85,9 +85,10 @@ int main(void) {
 // debug
 */
 
-List::List() {
-	this->head = new Node;
-	this->tail = new Node;
+template <class Type>
+List<Type>::List() {
+	this->head = new Node<Type>;
+	this->tail = new Node<Type>;
 
 	this->head->next = this->tail;
 	this->tail->next = nullptr;
@@ -95,7 +96,8 @@ List::List() {
 	this->length = 0;
 }
 
-List::~List() {
+template <class Type>
+List<Type>::~List() {
 	if (this->length > 0) {
 		this->eraseAll();
 	}
@@ -107,16 +109,17 @@ List::~List() {
 	this->length = 0;
 }
 
-void List::append(PersonalInfo &info) {
-	Node *last = this->moveLast();
-	Node *newNode = new Node;
+template <class Type>
+void List<Type>::append(Type &info) {
+	Node<Type> *last = this->moveLast();
+	Node<Type> *newNode = new Node<Type>;
 
 	//newNode->info = new PersonalInfo;
 	//newNode->info->name = info.name;
 	//newNode->info->phone = info.phone;
 	//newNode->info->address = info.address;
 	//newNode = info;
-	newNode->info = new PersonalInfo(info);
+	newNode->info = new Type(info);
 	
 	newNode->next = last->next;
 	last->next = newNode;
@@ -128,8 +131,9 @@ void List::append(PersonalInfo &info) {
 	newNode = nullptr;
 }
 
-Node* List::moveToBeforeNode(int index) {
-	Node *target;
+template <class Type>
+Node<Type>* List<Type>::moveToBeforeNode(int index) {
+	Node<Type> *target;
 	int i = 0;
 
 	if (index <= 0) {
@@ -146,9 +150,10 @@ Node* List::moveToBeforeNode(int index) {
 	return target;
 }
 
-void List::insert(int index, PersonalInfo &info) {
-	Node *target;
-	Node *newNode = new Node;
+template <class Type>
+void List<Type>::insert(int index, Type &info) {
+	Node<Type> *target;
+	Node<Type> *newNode = new Node<Type>;
 
 	target = this->moveToBeforeNode(index);
 
@@ -157,7 +162,7 @@ void List::insert(int index, PersonalInfo &info) {
 	//newNode->info->phone = info.phone;
 	//newNode->info->address = info.address;
 	//newNode = info;
-	newNode->info = new PersonalInfo(info);
+	newNode->info = new Type(info);
 
 	newNode->next = target->next;
 	target->next = newNode;
@@ -169,9 +174,10 @@ void List::insert(int index, PersonalInfo &info) {
 	newNode = nullptr;
 }
 
-void List::erase(int index) {
-	Node *before;
-	Node *target;
+template <class Type>
+void List<Type>::erase(int index) {
+	Node<Type> *before;
+	Node<Type> *target;
 
 	before = this->moveToBeforeNode(index);
 
@@ -189,7 +195,8 @@ void List::erase(int index) {
 	target = nullptr;
 }
 
-void List::eraseAll() {
+template <class Type>
+void List<Type>::eraseAll() {
 
 	if (this->length == 0) {
 		return;
@@ -202,9 +209,10 @@ void List::eraseAll() {
 	this->pos = this->head;
 }
 
-PersonalInfo List::viewAt(int index) {
+template <class Type>
+Type List<Type>::viewAt(int index) {
 	PersonalInfo info;
-	Node *target;
+	Node<Type> *target;
 
 	target = this->moveToBeforeNode(index)->next;
 
@@ -218,14 +226,16 @@ PersonalInfo List::viewAt(int index) {
 	return info;
 }
 
-Node* List::moveFirst() {
+template <class Type>
+Node<Type>* List<Type>::moveFirst() {
 	this->pos = this->head->next;
 
 	return this->pos;
 }
 
-Node* List::moveLast() {
-	Node *target;
+template <class Type>
+Node<Type>* List<Type>::moveLast() {
+	Node<Type> *target;
 	if (this->length <= 0) {
 		target = this->head;
 	}
@@ -238,13 +248,15 @@ Node* List::moveLast() {
 	return target;
 }
 
-Node* List::moveNext() {
+template <class Type>
+Node<Type>* List<Type>::moveNext() {
 	this->pos = this->pos->next;
 
 	return this->pos;
 }
 
-int List::isTail() {
+template <class Type>
+int List<Type>::isTail() {
 	int isTail = FALSE;
 
 	if (this->pos->next == nullptr) {
@@ -254,19 +266,22 @@ int List::isTail() {
 	return isTail;
 }
 
-int List::getLength() {
+template <class Type>
+int List<Type>::getLength() {
 	return this->length;
 }
 
-Node* List::getNode(int index) {
-	Node *target;
+template <class Type>
+Node<Type>* List<Type>::getNode(int index) {
+	Node<Type> *target;
 
 	target = this->moveToBeforeNode(index)->next;
 
 	return target;
 }
 
-int List::findName(string name) {
+template <class Type>
+int List<Type>::findName(string name) {
 	int index = 0;
 	int isFound = FALSE;
 

@@ -28,9 +28,10 @@
 #define TRUE 1
 #define FALSE 0
 
+template <class Type>
 class AddressBook {
 private:
-	List *list;
+	List<Type> *list;
 public:
 	AddressBook();
 	~AddressBook();
@@ -43,8 +44,8 @@ public:
 	void modify();
 	void search();
 	void printHeader(int);
-	void printPersonInfo(PersonalInfo&, int);
-	void printPersonInfoPointer(PersonalInfo*, int);
+	void printPersonInfo(Type&, int);
+	void printPersonInfoPointer(Type*, int);
 	void printAll();
 	void save();
 	void load();
