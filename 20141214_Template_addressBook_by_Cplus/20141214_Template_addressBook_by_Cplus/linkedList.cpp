@@ -211,7 +211,7 @@ void List<Type>::eraseAll() {
 
 template <class Type>
 Type List<Type>::viewAt(int index) {
-	PersonalInfo info;
+	Type info;
 	Node<Type> *target;
 
 	target = this->moveToBeforeNode(index)->next;
