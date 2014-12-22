@@ -3,12 +3,13 @@
 * Date : 2014.12.14
 * Writer : Sejoong Kim
 **********************/
-
+/*
 #define _CRT_SECURE_NO_WARNINGS
 #include "linkedlist.h"
 #include <iostream>
 
 using namespace std;
+*/
 
 /*
 //debug 
@@ -85,6 +86,7 @@ int main(void) {
 // debug
 */
 
+/*
 template <class Type>
 List<Type>::List() {
 	this->head = new Node<Type>;
@@ -301,3 +303,4 @@ int List<Type>::findName(string name) {
 
 	return index;
 }
+*/

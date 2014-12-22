@@ -10,7 +10,7 @@
 
 int main(void) {
 	int menu = -1;
-	AddressBook<PersonalInfo> *book = new AddressBook<PersonalInfo>;
+	AddressBook *book = new AddressBook;
 	//book = (AddressBook*)malloc(sizeof(AddressBook));
 	//createAddressBook(book);
 
