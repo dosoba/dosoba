@@ -22,20 +22,22 @@ public:
 
 	// copy constructor
 	PersonalInfo(PersonalInfo &info);
+	
+	// 
+	~PersonalInfo();
 
 	// overloading operators
 	PersonalInfo& operator= (PersonalInfo& info);
 	bool operator== (PersonalInfo& info);
 	bool operator== (string& info);
-	//ostream& operator<< (ostream& os);
 	friend ostream& operator<< (ostream& os, PersonalInfo& info);
 
 	// need to definition for accessing private variables
-	void setName(string);
+	void setName(string name);
 	string getName();
-	void setPhone(string);
+	void setPhone(string name);
 	string getPhone();
-	void setAddress(string);
+	void setAddress(string name);
 	string getAddress();	
 };
 
