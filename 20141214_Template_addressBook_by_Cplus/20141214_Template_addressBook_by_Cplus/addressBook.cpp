@@ -198,6 +198,7 @@ void AddressBook::modify() {
 
 void AddressBook::search() {
 	string name;
+	PersonalInfo info;
 	int foundIndex = -1;
 
 	if (this->isEmpty() == TRUE) {
@@ -208,7 +209,7 @@ void AddressBook::search() {
 	cout << "검색할 이름: ";
 	cin >> name;
 
-	foundIndex = this->list->findName(name);
+	foundIndex = this->list->find(info);
 
 	if (foundIndex == -1) {
 		this->print_error(ERROR_NOT_SEARCH);
