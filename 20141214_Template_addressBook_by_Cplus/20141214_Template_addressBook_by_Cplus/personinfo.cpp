@@ -10,30 +10,36 @@
 
 //default constructor
 PersonalInfo::PersonalInfo() {
-	name = "";
-	phone = "";
-	address = "";
+	this->name = "";
+	this->phone = "";
+	this->address = "";
 }
 
 //copy constructor
 PersonalInfo::PersonalInfo(PersonalInfo &info) {
-	name = info.name;
-	phone = info.phone;
-	address = info.address;
+	this->name = info.name;
+	this->phone = info.phone;
+	this->address = info.address;
+}
+
+PersonalInfo::~PersonalInfo() {
+	this->name = "";
+	this->phone = "";
+	this->address = "";
 }
 
 //overloading operator = 
 PersonalInfo& PersonalInfo::operator= (PersonalInfo& info) {
-	name = info.name;
-	phone = info.phone;
-	address = info.address;
+	this->name = info.name;
+	this->phone = info.phone;
+	this->address = info.address;
 
 	return *this;
 }
 
 //overloading operator ==
 bool PersonalInfo::operator== (PersonalInfo& info) {
-	if (name == info.name) {
+	if (this->name == info.name) {
 		return true;
 	}
 	else {
@@ -43,7 +49,7 @@ bool PersonalInfo::operator== (PersonalInfo& info) {
 
 //overloading operator ==
 bool PersonalInfo::operator== (string& info) {
-	if (name == info) {
+	if (this->name == info) {
 		return true;
 	}
 	else {
@@ -52,25 +58,8 @@ bool PersonalInfo::operator== (string& info) {
 }
 
 //overloading operator <<
-/*
-ostream& PersonalInfo::operator<< (ostream& os) {
-	os << os.width(8) << left << name << "  ";
-	os << os.width(12) << left << phone << "  ";
-	os << os.width(50) << left << address;
-	return os;
-}
-*/
-
-//overloading operator <<
 ostream& operator<< (ostream& os, PersonalInfo& info) {
-	/*
-	os.width(8);
-	os << left << info.name << "  ";
-	os.width(12);
-	os << left << info.phone << "  ";
-	os.width(50);
-	os << left << info.address;
-	*/
+
 	os << setw(8) << left << info.name << "  ";
 	os << setw(12) << left << info.phone << "  ";
 	os << setw(50) << left << info.address;
@@ -84,7 +73,7 @@ void PersonalInfo::setName(string name) {
 }
 
 string PersonalInfo::getName() {
-	return name;
+	return this->name;
 }
 
 void PersonalInfo::setPhone(string phone) {
@@ -92,7 +81,7 @@ void PersonalInfo::setPhone(string phone) {
 }
 
 string PersonalInfo::getPhone() {
-	return phone;
+	return this->phone;
 }
 
 void PersonalInfo::setAddress(string address) {
@@ -100,5 +89,5 @@ void PersonalInfo::setAddress(string address) {
 }
 
 string PersonalInfo::getAddress() {
-	return address;
+	return this->address;
 }
