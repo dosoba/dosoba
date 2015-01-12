@@ -20,8 +20,8 @@
 template <class Type>
 class Node {
 public:
-	PersonalInfo *info;
-	Node<Type> *next;
+	Type *info;
+	Node *next;
 };
 
 template <class Type>
@@ -34,104 +34,22 @@ private:
 public:
 	List();
 	~List();
-	void append(Type&);
-	Node<Type>* moveToBeforeNode(int);
-	void insert(int, Type&);
-	void erase(int);
+	void append(Type &data);
+	Node<Type>* moveToBeforeNode(int index);
+	void insert(int index, Type &data);
+	void erase(int index);
 	void eraseAll();
-	Type viewAt(int);
+	Type viewAt(int index);
 	Node<Type>* moveFirst();
 	Node<Type>* moveLast();
 	Node<Type>* moveNext();
 	int isTail();
 	int getLength();
-	Node<Type>* getNode(int);
-	int findName(string);
+	Node<Type>* getNode(int index);
+	//int findName(string);
+	int find(Type &data);
 	void print();
 };
-
-/*********************
-* Name : linkedList.cpp
-* Date : 2014.12.14
-* Writer : Sejoong Kim
-**********************/
-
-using namespace std;
-
-/*
-//debug
-void printHeaderLinkedList(int printNum) {
-cout << "----------------------------------------------" << endl;
-if (printNum == TRUE) {
-cout << "번호  이름     전화번호      주소" << endl;
-}
-else {
-cout << "이름     전화번호      주소" << endl;
-}
-cout << "----------------------------------------------" << endl;
-}
-
-void printPersonInfoLinkedList(PersonalInfo *info, int printNum) {
-if (printNum != FALSE) {
-//std::cout << "%-4d  %-7s  %-12s  %-50s", printNum, info->name, info->phone, info->address << std::endl;
-cout.width(4);
-cout << left << printNum;
-cout << "  ";
-cout.width(7);
-cout << left << info->name;
-cout << "  ";
-cout.width(12);
-cout << left << info->phone;
-cout << "  ";
-cout.width(50);
-cout << left << info->address << endl;
-}
-else {
-//printf("%-8s  %-12s  %-50s\n", info->name, info->phone, info->address);
-cout.width(8);
-cout << left << info->name;
-cout << "  ";
-cout.width(12);
-cout << left << info->phone;
-cout << "  ";
-cout.width(50);
-cout << left << info->address << endl;
-}
-}
-
-void List::print() {
-int number = 1;
-Node *target;
-
-printHeaderLinkedList(TRUE);
-
-target = this->moveFirst();
-while (this->isTail() != TRUE) {
-printPersonInfoLinkedList(target->info, number);
-target = this->moveNext();
-number++;
-}
-}
-
-int main(void) {
-List *list = new List();
-
-PersonalInfo info1 = { "aaa", "0001110000", "xxx" };
-PersonalInfo info2 = { "bbb", "0002220000", "yyy" };
-PersonalInfo info3 = { "ccc", "0003330000", "zzz" };
-
-list->append(info1);
-list->append(info2);
-list->insert(1, info3);
-
-list->print();
-
-delete list;
-
-return 0;
-}
-// debug
-*/
 
 template <class Type>
 List<Type>::List() {
@@ -158,15 +76,10 @@ List<Type>::~List() {
 }
 
 template <class Type>
-void List<Type>::append(Type &info) {
+void List<Type>::append(Type &data) {
 	Node<Type> *last = this->moveLast();
 	Node<Type> *newNode = new Node<Type>;
 
-	//newNode->info = new PersonalInfo;
-	//newNode->info->name = info.name;
-	//newNode->info->phone = info.phone;
-	//newNode->info->address = info.address;
-	//newNode = info;
 	newNode->info = new Type(info);
 
 	newNode->next = last->next;
@@ -199,18 +112,13 @@ Node<Type>* List<Type>::moveToBeforeNode(int index) {
 }
 
 template <class Type>
-void List<Type>::insert(int index, Type &info) {
+void List<Type>::insert(int index, Type &data) {
 	Node<Type> *target;
-	Node<Type> *newNode = new Node<Type>;
+	Node<Type> *newNode = new Node;
 
 	target = this->moveToBeforeNode(index);
 
-	//newNode->info = new PersonalInfo;
-	//newNode->info->name = info.name;
-	//newNode->info->phone = info.phone;
-	//newNode->info->address = info.address;
-	//newNode = info;
-	newNode->info = new Type(info);
+	newNode->info = new Type(data);
 
 	newNode->next = target->next;
 	target->next = newNode;
@@ -259,19 +167,12 @@ void List<Type>::eraseAll() {
 
 template <class Type>
 Type List<Type>::viewAt(int index) {
-	Type info;
 	Node<Type> *target;
 
 	target = this->moveToBeforeNode(index)->next;
 
-	//info.name = target->info->name;
-	//info.phone = target->info->phone;
-	//info.address = target->info->address;
-	info = *(target->info);
-
 	this->pos = target;
-	target = nullptr;
-	return info;
+	return *(target->info);;
 }
 
 template <class Type>
@@ -329,13 +230,13 @@ Node<Type>* List<Type>::getNode(int index) {
 }
 
 template <class Type>
-int List<Type>::findName(string name) {
+int List<Type>::find(Type & data) {
 	int index = 0;
 	int isFound = FALSE;
 
 	this->moveFirst();
 	while (this->isTail() != TRUE) {
-		if (*(this->pos->info) == name) {
+		if (*(this->pos->info) == data) {
 			isFound = TRUE;
 			break;
 		}
@@ -349,6 +250,5 @@ int List<Type>::findName(string name) {
 
 	return index;
 }
-
 
 #endif // __LINKEDLIST__
