@@ -17,40 +17,42 @@ AddressBook::AddressBook() {
 }
 
 AddressBook::~AddressBook() {
+	this->list->eraseAll();
+	
 	delete this->list;
 }
 
 void AddressBook::printMainMenu() {
-	cout << "1. ÁÖ¼ÒÁ¤º¸¸¦ ÀÔ·ÂÇÑ´Ù." << endl;
-	cout << "2. ÁÖ¼ÒÁ¤º¸¸¦ »èÁ¦ÇÑ´Ù." << endl;
-	cout << "3. ÁÖ¼ÒÁ¤º¸¸¦ ¼öÁ¤ÇÑ´Ù." << endl;
-	cout << "4. ÁÖ¼ÒÁ¤º¸¸¦ °Ë»öÇÑ´Ù." << endl;
-	cout << "5. ÀüÃ¼ ÁÖ¼Ò·ÏÀ» Ãâ·ÂÇÑ´Ù." << endl;
-	cout << "6. ÁÖ¼Ò·Ï ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù." << endl;
-	cout << "7. ÁÖ¼Ò·Ï ÆÄÀÏÀ» ºÒ·¯¿Â´Ù." << endl;
-	cout << "0. Á¾·áÇÑ´Ù." << endl;
+	cout << "1. ì£¼ì†Œì •ë³´ë¥¼ ìž…ë ¥í•œë‹¤." << endl;
+	cout << "2. ì£¼ì†Œì •ë³´ë¥¼ ì‚­ì œí•œë‹¤." << endl;
+	cout << "3. ì£¼ì†Œì •ë³´ë¥¼ ìˆ˜ì •í•œë‹¤." << endl;
+	cout << "4. ì£¼ì†Œì •ë³´ë¥¼ ê²€ìƒ‰í•œë‹¤." << endl;
+	cout << "5. ì „ì²´ ì£¼ì†Œë¡ì„ ì¶œë ¥í•œë‹¤." << endl;
+	cout << "6. ì£¼ì†Œë¡ íŒŒì¼ì— ì €ìž¥í•œë‹¤." << endl;
+	cout << "7. ì£¼ì†Œë¡ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¨ë‹¤." << endl;
+	cout << "0. ì¢…ë£Œí•œë‹¤." << endl;
 }
 
 void AddressBook::print_finish() {
-	cout << "ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù." << endl;
+	cout << "í”„ë¡œê·¸ëž¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤." << endl;
 }
 
 void AddressBook::print_error(int error) {
 	switch (error) {
 	case ERROR_NO_MENU:
-		cout << "¾ø´Â ¹øÈ£¸¦ ÀÔ·ÂÇÏ¿´½À´Ï´Ù." << endl;
+		cout << "ì—†ëŠ” ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤." << endl;
 		break;
 	case ERROR_FULL:
-		cout << "ÁÖ¼Ò·ÏÀÌ °¡µæ Ã¡½À´Ï´Ù." << endl;
+		cout << "ì£¼ì†Œë¡ì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤." << endl;
 		break;
 	case ERROR_EMPTY:
-		cout << "ÁÖ¼Ò·ÏÀÌ ºñ¾îÀÖ½À´Ï´Ù." << endl;
+		cout << "ì£¼ì†Œë¡ì´ ë¹„ì–´ìžˆìŠµë‹ˆë‹¤." << endl;
 		break;
 	case ERROR_NOT_SEARCH:
-		cout << "ÁÖ¼ÒÁ¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù." << endl;
+		cout << "ì£¼ì†Œì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
 		break;
 	case ERROR_LOAD_FAIL:
-		cout << "addressbook.book ÆÄÀÏÀ» ºÒ·¯¿Ã¼ö ¾ø½À´Ï´Ù." << endl;
+		cout << "addressbook.book íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¬ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
 		break;
 	default:
 		break;
@@ -74,29 +76,29 @@ void AddressBook::input() {
 	string phone;
 	string address;
 
-	cout << "ÀÌ¸§ : ";
+	cout << "ì´ë¦„ : ";
 	cin >> name;
 	info.setName(name);
 
-	cout << "ÀüÈ­¹øÈ£ : ";
+	cout << "ì „í™”ë²ˆí˜¸ : ";
 	cin >> phone;
 	info.setPhone(phone);
 
-	cout << "ÁÖ¼Ò : ";
+	cout << "ì£¼ì†Œ : ";
 	cin >> address;
 	info.setAddress(address);
 
-	cout << "ÀÔ·ÂµÈ Á¤º¸" << endl;
+	cout << "ìž…ë ¥ëœ ì •ë³´" << endl;
 	this->printHeader(FALSE);
 	this->printPersonInfo(info, FALSE);
 
 	cin.sync();
-	cout << "Ãß°¡ÇÏ½Ã°Ú½À´Ï±î ? (y/n) :";
+	cout << "ì¶”ê°€í•˜ì‹œê² ìŠµë‹ˆê¹Œ ? (y/n) :";
 	cin.get(yesno);
 	
 	if (yesno == 'y') {
 		this->list->append(info);
-		cout << "Ãß°¡µÇ¾ú½À´Ï´Ù." << endl;
+		cout << "ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
 	}
 }
 
@@ -110,7 +112,7 @@ void AddressBook::remove() {
 		return;
 	}
 
-	cout << "»èÁ¦ÇÒ ÀÌ¸§: ";
+	cout << "ì‚­ì œí•  ì´ë¦„: ";
 	cin >> name;
 
 	removeIndex = this->list->findName(name);
@@ -124,13 +126,13 @@ void AddressBook::remove() {
 	this->printPersonInfo(this->list->viewAt(removeIndex), FALSE);
 
 	cin.sync();
-	cout << "»èÁ¦ÇÏ°Ú½À´Ï±î? (y/n) :";
+	cout << "ì‚­ì œí•˜ê² ìŠµë‹ˆê¹Œ? (y/n) :";
 	cin.get(yesno);
 
 
 	if (yesno == 'y') {
 		this->list->erase(removeIndex);
-		cout << "»èÁ¦µÇ¾ú½À´Ï´Ù." << endl;
+		cout << "ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
 	}
 }
 
@@ -150,7 +152,7 @@ void AddressBook::modify() {
 		return;
 	}
 
-	cout << "¼öÁ¤ÇÒ ÀÌ¸§: ";
+	cout << "ìˆ˜ì •í•  ì´ë¦„: ";
 	cin >> name;
 
 	modifyIndex = this->list->findName(name);
@@ -164,23 +166,23 @@ void AddressBook::modify() {
 	this->printPersonInfo(this->list->viewAt(modifyIndex), FALSE);
 
 	cin.sync();
-	cout << "¼öÁ¤ÇÏ°Ú½À´Ï±î? (y/n) :";
+	cout << "ìˆ˜ì •í•˜ê² ìŠµë‹ˆê¹Œ? (y/n) :";
 	cin.get(yesno);
 
 	if (yesno == 'y') {
-		cout << "ÀÌ¸§ : ";
+		cout << "ì´ë¦„ : ";
 		cin >> name;
 		info.setName(name);
 
-		cout << "ÀüÈ­¹øÈ£ : ";
+		cout << "ì „í™”ë²ˆí˜¸ : ";
 		cin >> phone;		
 		info.setPhone(phone);
 
-		cout << "ÁÖ¼Ò : ";
+		cout << "ì£¼ì†Œ : ";
 		cin >> address;
 		info.setAddress(address);
 
-		cout << "¼öÁ¤µÈ Á¤º¸\n";
+		cout << "ìˆ˜ì •ëœ ì •ë³´\n";
 		this->printHeader(FALSE);
 		this->printPersonInfo(info, FALSE);
 
@@ -190,7 +192,7 @@ void AddressBook::modify() {
 		target->info->setPhone(info.getPhone());
 		target->info->setAddress(info.getAddress());
 
-		cout << "¼öÁ¤µÇ¾ú½À´Ï´Ù." << endl;
+		cout << "ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
 	}
 }
 
@@ -203,7 +205,7 @@ void AddressBook::search() {
 		return;
 	}
 
-	cout << "°Ë»öÇÒ ÀÌ¸§: ";
+	cout << "ê²€ìƒ‰í•  ì´ë¦„: ";
 	cin >> name;
 
 	foundIndex = this->list->findName(name);
@@ -220,32 +222,28 @@ void AddressBook::search() {
 void AddressBook::printHeader(int printNum) {
 	cout << "----------------------------------------------" << endl;
 	if (printNum == TRUE) {
-		cout << "¹øÈ£  ÀÌ¸§      ÀüÈ­¹øÈ£      ÁÖ¼Ò" << endl;
+		cout << "ë²ˆí˜¸  ì´ë¦„      ì „í™”ë²ˆí˜¸      ì£¼ì†Œ" << endl;
 	}
 	else {
-		cout << "ÀÌ¸§      ÀüÈ­¹øÈ£      ÁÖ¼Ò" << endl;
+		cout << "ì´ë¦„      ì „í™”ë²ˆí˜¸      ì£¼ì†Œ" << endl;
 	}
 	cout << "----------------------------------------------" << endl;
 }
 
 void AddressBook::printPersonInfo(PersonalInfo &info, int printNum) {
 	if (printNum != FALSE) {
-		//cout.width(4);
 		cout << setw(4) << left << printNum;
 		cout << "  ";
 	}
-	cout << info;
-	cout << endl;
+	cout << info << endl;
 }
 
 void AddressBook::printPersonInfoPointer(PersonalInfo *info, int printNum) {
 	if (printNum != FALSE) {
-		//cout.width(4);
 		cout << setw(4) << left << printNum;
 		cout << "  ";
 	}
 	cout << (*info);
-	//cout << endl;
 }
 
 void AddressBook::printAll() {
@@ -289,10 +287,10 @@ void AddressBook::save() {
 		file.close();
 	}
 
-	//¾Æ·¡ ÄÚµå°¡ ÇÊ¿äÇÑÁö È®ÀÎÀÌ ÇÊ¿äÇÏ´Ù.
+	//ì•„ëž˜ ì½”ë“œê°€ í•„ìš”í•œì§€ í™•ì¸ì´ í•„ìš”í•˜ë‹¤.
 	target = nullptr;
 
-	cout << "addressbook.dat ÆÄÀÏ¿¡ ÀúÀåÇÏ¿´½À´Ï´Ù." << endl;
+	cout << "addressbook.dat íŒŒì¼ì— ì €ìž¥í•˜ì˜€ìŠµë‹ˆë‹¤." << endl;
 }
 
 void AddressBook::load() {
@@ -332,26 +330,12 @@ void AddressBook::load() {
 		file.close();
 	}
 
-	cout << "addressbook.dat ÆÄÀÏÀ» ºÒ·¯¿Ô½À´Ï´Ù." << endl;
+	cout << "addressbook.dat íŒŒì¼ì„ ë¶ˆëŸ¬ì™”ìŠµë‹ˆë‹¤." << endl;
 }
 
 void AddressBook::testSetup() {
 	int index = 0;
 
-	/*
-	PersonalInfo sample[10] = {
-	{ "aaa", "0001112222", "abc" },
-	{ "bbb", "0001113333", "abc" },
-	{ "ccc", "0001114444", "abc" },
-	{ "ddd", "0001115555", "abc" },
-	{ "eee", "0001116666", "abc" },
-	{ "fff", "0001117777", "abc" },
-	{ "ggg", "0001118888", "abc" },
-	{ "hhh", "0001119999", "abc" },
-	{ "iii", "0001110000", "abc" },
-	{ "jjj", "0002220000", "abc" }
-	};
-	*/
 	PersonalInfo sample[10];
 
 	sample[0].setName("aaa");
