@@ -14,7 +14,6 @@
 #define FALSE 0
 
 #include "personinfo.h"
-#include "linkedlist.h"
 #include <iostream>
 
 template <class Type>
@@ -80,7 +79,7 @@ void List<Type>::append(Type &data) {
 	Node<Type> *last = this->moveLast();
 	Node<Type> *newNode = new Node<Type>;
 
-	newNode->info = new Type(info);
+	newNode->info = new Type(data);
 
 	newNode->next = last->next;
 	last->next = newNode;
