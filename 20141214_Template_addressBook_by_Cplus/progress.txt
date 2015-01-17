@@ -75,3 +75,6 @@ list = new linkedlist<personInfo>;
 1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall AddressBook<class PersonalInfo>::testSetup(void)" (?testSetup@?$AddressBook@VPersonalInfo@@@@QAEXXZ) referenced in function _main
 1>C:\Users\home\Documents\GitHub\dosoba\20141214_Template_addressBook_by_Cplus\Debug\20141214_Template_addressBook_by_Cplus.exe : fatal error LNK1120: 12 unresolved externals
 어디가 문제인지 확인이 필요하다
+
+결론적으로 Template을 구현할때는 구현부와 정의부가 한 파일안에 있어야 한다.
+따라서 *.h에 정의부 구현부 모두 존재해야 한다.(*.cpp 필요 없음)
