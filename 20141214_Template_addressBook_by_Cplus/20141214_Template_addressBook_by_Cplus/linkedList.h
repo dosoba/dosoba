@@ -171,7 +171,7 @@ Type List<Type>::viewAt(int index) {
 	target = this->moveToBeforeNode(index)->next;
 
 	this->pos = target;
-	return *(target->info);;
+	return *(target->info);
 }
 
 template <class Type>
