@@ -113,7 +113,7 @@ Node<Type>* List<Type>::moveToBeforeNode(int index) {
 template <class Type>
 void List<Type>::insert(int index, Type &data) {
 	Node<Type> *target;
-	Node<Type> *newNode = new Node;
+	Node<Type> *newNode = new Node<Type>;
 
 	target = this->moveToBeforeNode(index);
 
