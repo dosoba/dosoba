@@ -49,10 +49,10 @@ class personalInfo:
         isEqual = False
 
         if type(other) is personalInfo:
-            if (self._name == other._name):
-                isEqual = False
+            if (self.name == other.name):
+                isEqual = True
         elif type(other) is str:
-            if (self._name == other):
+            if (self.name == other):
                 isEqual = True
         else:
             isEqual = False
