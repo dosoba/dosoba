@@ -107,7 +107,8 @@ class linkedlist(object):
     def isTail(self):
         isTail = False
 
-        if (self.pos.next == None):
+        #if (self.pos.next == None):
+        if (self.pos == None):
             isTail = True
 
         return isTail
