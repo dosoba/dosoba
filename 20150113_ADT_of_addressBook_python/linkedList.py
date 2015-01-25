@@ -24,6 +24,9 @@ class linkedlist(object):
         self.pos = node()
         self.length = 0
 
+        self.head.next = self.tail
+        self.pos = self.tail
+
     def append(self, data):
         last = self.moveLast()
         newNode = node()
@@ -107,8 +110,7 @@ class linkedlist(object):
     def isTail(self):
         isTail = False
 
-        #if (self.pos.next == None):
-        if (self.pos == None):
+        if (self.pos.next == None):
             isTail = True
 
         return isTail
