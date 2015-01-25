@@ -1,0 +1,12 @@
+1/25
+: 디렉토리 생성, python 파일 생성
+: CREATE, SELECT, UPDATE, INSERT, DELETE 이론 작성
+
+1/26
+: save, load 함수 작성
+
+1/27
+: 코드내 작성
+
+1/28
+: unit test  관련 원문 읽기
