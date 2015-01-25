@@ -8,3 +8,7 @@ python으로 코딩 완료
 에러 수정
   - 찾기 기능 정상으로 수정 : personinfo 파일내 personalInfo 클래스 내 __eq__ 함수내 에러 수정
   - 전체 출력하기 정상으로 수정 : linkedlist 파일내 isTail 함수내 에러 수정
+  
+3. 2015.01.23
+조언 듣고 에러 수정 
+  - linkedlist내  __init__ 에서 링크드 리스트 연결 부분에 문제가 생겨서 찾기 기능에 문제 발생했음
