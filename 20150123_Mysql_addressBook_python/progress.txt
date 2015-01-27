@@ -3,8 +3,23 @@
 : CREATE, SELECT, UPDATE, INSERT, DELETE 이론 작성
 
 1/26 -> 1/27
+python Mysql 기본
+
+: Mysql 연결 관련
+import MySQLdb as mdb
+con = mdb.connect('localhost', 'testuser', 'test623', 'testdb');
+위의 코드 관련 설명
+  'localhost': MySQL server가 동작하는 곳 
+  'testuser' : 새롭게 추가한 user id, root계정은 root
+  'test623'  : 새롭게 추가한 user password
+  'testdb'   : 새롭게 생성한 database
+
+: 커서 관련
+cur = con.cursor()
+
 : save 함수 작성
 bug 관련) 아래 처럼 ( "" "" % () ) 이 구조로 안가면 실행시 에러가 발생한다.
+cur = con.cursor()
 cur.execute("INSERT INTO addressbook (name, phone, address) "
                 "VALUES (\'%s\', \'%s\', \'%s\')" % (target.data.name, target.data.phone, target.data.address))
 
