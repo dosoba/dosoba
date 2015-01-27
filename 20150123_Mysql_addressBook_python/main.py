@@ -32,9 +32,9 @@ def main():
         elif menu == book.MENU_ALL_PRINT:
             book.printAll()
         elif menu == book.MENU_SAVE:
-            book.save()
+            book.save_db()
         elif menu == book.MENU_LOAD:
-            book.load()
+            book.load_db()
         elif menu == book.MENU_FINISH:
             book.print_finish()
         else:

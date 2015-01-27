@@ -8,6 +8,7 @@ Writer : Sejoong Kim
 
 import personInfo
 import linkedList
+import MySQLdb as mdb
 
 class addressbook(object):
     def __init__(self):
@@ -207,6 +208,42 @@ class addressbook(object):
             if eof == f.tell(): break
 
         print "addressbook.dat 파일을 불러왔습니다."
+
+    def save_db(self):
+        if (self.isEmpty() == True):
+            self.print_error(self.ERROR_EMPTY)
+            return None
+        target = self.list.moveFirst()
+        con = mdb.connect('localhost', 'root', 'qwop1290', 'studydb')
+        with con:
+            cur = con.cursor()
+            cur.execute("DROP TABLE IF EXISTS addressbook")
+            cur.execute("CREATE TABLE addressbook(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(10) UNIQUE NOT NULL, phone VARCHAR(13) DEFAULT NULL, address VARCHAR(50) DEFAULT NULL)")
+
+            while (self.list.isTail() != True):
+                cur.execute("INSERT INTO addressbook (name, phone, address) "
+                "VALUES (\'%s\', \'%s\', \'%s\')" % (target.data.name, target.data.phone, target.data.address))
+                target = self.list.moveNext()
+
+        print "studydb database내 addressbook table에 저장하였습니다."
+
+    def load_db(self):
+        self.list.deleteAll()
+
+        con = mdb.connect('localhost', 'root', 'qwop1290', 'studydb')
+        with con:
+            cur = con.cursor(mdb.cursors.DictCursor)
+            cur.execute("SELECT * FROM addressbook")
+            rows = cur.fetchall()
+
+            for row in rows:
+                info = personInfo.personalInfo()
+                info.name = row['name']
+                info.phone = row['phone']
+                info.address = row['address']
+                self.list.append(info)
+
+        print "studydb database내 addressbook table을 불러왔습니다."
 
     def testSetup(self):
         samples = []
