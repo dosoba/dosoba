@@ -2,8 +2,21 @@
 : 디렉토리 생성, python 파일 생성
 : CREATE, SELECT, UPDATE, INSERT, DELETE 이론 작성
 
-1/26
-: save, load 함수 작성
+1/26 -> 1/27
+: save 함수 작성
+bug 관련) 아래 처럼 ( "" "" % () ) 이 구조로 안가면 실행시 에러가 발생한다.
+cur.execute("INSERT INTO addressbook (name, phone, address) "
+                "VALUES (\'%s\', \'%s\', \'%s\')" % (target.data.name, target.data.phone, target.data.address))
+
+: load 함수 작성
+아래처럼 mdb.cursors.DictCursor로 하면 편리함
+cur.fetchall() 하면 모든 row 들에 대해서 가져온다
+        with con:
+            cur = con.cursor(mdb.cursors.DictCursor)
+            cur.execute("SELECT * FROM addressbook")
+            rows = cur.fetchall()
+            for row in rows:
+              print row #print 예시
 
 1/27
 : 코드내 작성
