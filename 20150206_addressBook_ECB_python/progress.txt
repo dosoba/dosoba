@@ -1,0 +1,6 @@
+2015.02.06
+To do List
+1. ECB 모델로 분리하기
+- addressBook.py -> addressBookCtrl.py
+                 -> addressBookUI.py
+2. linkedList.py 파일 Testcase 작성
