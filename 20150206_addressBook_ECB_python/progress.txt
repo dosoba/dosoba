@@ -6,9 +6,15 @@ To do List
 
 아래 함수 수정은
 main.py, addressBookUI.py, addressBookCtrl.py 수정
-1.1. input()함수 수정 - 2015.02.09
-1.2. remove()함수 수정 - 2015.02.09
-1.3.
-1.4.
+1.1.  input()함수 수정 - 2015.02.09
+1.2.  remove()함수 수정 - 2015.02.09
+1.3.  modify()함수 수정 - 2015.02.10
+1.4.  search()함수 수정 - 2015.02.10
+1.5.  printAll()함수 수정 - 2015.20.10
+1.6.  printMainMenu()함수 수정 - 2015.20.10
+1.7.  print_finish()함수 수정 - 2015.20.10
+1.8.  print_error()함수 수정 - 2015.20.10
+1.9.  printHeader()함수 수정 - 2015.20.10
+1.10. printPersonInfo()함수 수정 - 2015.20.10
 
 2. linkedList.py 파일 Testcase 작성

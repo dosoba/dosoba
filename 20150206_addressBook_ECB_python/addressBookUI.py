@@ -63,7 +63,7 @@ def printPersonInfo(info, printNum):
         print "%-4s" % printNum,
     print "%-7s %-14s %-50s" % (info.name, info.phone, info.address)
 
-def inputView(book):
+def input(book):
     info = personInfo.personalInfo()
 
     info.name = raw_input("이름 : ")
@@ -98,3 +98,59 @@ def remove(book):
     if (yesno == 'y' or 'Y'):
         book.remove(removeIndex)
         print "삭제되었습니다."
+
+def modify(book):
+    if (book.isEmpty() == True):
+        print_error(ERROR_EMPTY)
+        return None
+
+    name = raw_input("수정할 이름: ")
+    modifyIndex = book.list.find(name)
+
+    if (modifyIndex == -1):
+        print_error(ERROR_NOT_SEARCH)
+        return None
+
+    printHeader(-1)
+    printPersonInfo(book.list.viewAt(modifyIndex), -1)
+
+    yesno = raw_input("수정하시겠습니까? (y/n) : ")
+    info = personInfo.personalInfo()
+    if (yesno == 'y' or 'Y'):
+        info.name = raw_input("이름 : ")
+        info.phone = raw_input("전화번호 : ")
+        info.address = raw_input("주소 : ")
+
+        print "수정된 정보"
+        book.modify(modifyIndex, info)
+        printHeader(-1)
+        printPersonInfo(book.list.viewAt(modifyIndex), -1)
+        print "수정되었습니다."
+
+def search(book):
+    if (book.isEmpty() == True):
+        print_error(ERROR_EMPTY)
+        return None
+
+    name = raw_input("검색할 이름 : ")
+    foundIndex = book.search(name)
+
+    if (foundIndex == -1):
+        print_error(ERROR_NOT_SEARCH)
+        return None
+
+    printHeader(-1)
+    printPersonInfo(book.list.viewAt(foundIndex), -1)
+
+def printAll(book):
+    number = 1
+    if (book.isEmpty() == True):
+        print_error(ERROR_EMPTY)
+        return None
+
+    printHeader(1)
+    target = book.list.moveFirst()
+    while (book.list.isTail() != True):
+        printPersonInfo(target.data, number)
+        target = book.list.moveNext()
+        number = number + 1

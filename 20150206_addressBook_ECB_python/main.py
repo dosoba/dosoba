@@ -6,43 +6,42 @@ Date : 2015.01.23
 Writer : Sejoong Kim
 """
 
-import addressBook
+import addressBookCtrl
 import addressBookUI
 
 def main():
     menu = -1
-    book = addressBook.addressbook()
+    book = addressBookCtrl.addressbook()
 
     book.testSetup()
 
     while (menu != 0):
-        book.printMainMenu()
+        addressBookUI.printMainMenu()
 
         menu = raw_input("menu: ")
 
         menu = int(menu)
 
-        if menu == book.MENU_INPUT:
-            addressBookUI.inputView(book)
-            #book.input()
-        elif menu == book.MENU_REMOVE:
-            book.remove()
-        elif menu == book.MENU_MODIFY:
-            book.modify()
-        elif menu == book.MENU_SEARCH:
-            book.search()
-        elif menu == book.MENU_ALL_PRINT:
-            book.printAll()
-        elif menu == book.MENU_SAVE:
+        if menu == addressBookUI.MENU_INPUT:
+            addressBookUI.input(book)
+        elif menu == addressBookUI.MENU_REMOVE:
+            addressBookUI.remove(book)
+        elif menu == addressBookUI.MENU_MODIFY:
+            addressBookUI.modify(book)
+        elif menu == addressBookUI.MENU_SEARCH:
+            addressBookUI.search(book)
+        elif menu == addressBookUI.MENU_ALL_PRINT:
+            addressBookUI.printAll(book)
+        elif menu == addressBookUI.MENU_SAVE:
             book.save_db()
-        elif menu == book.MENU_LOAD:
+        elif menu == addressBookUI.MENU_LOAD:
             book.load_db()
-        elif menu == book.MENU_FINISH:
-            book.print_finish()
+        elif menu == addressBookUI.MENU_FINISH:
+            addressBookUI.print_finish()
         else:
-            book.print_error(book.ERROR_NO_MENU)
+            addressBookUI.print_error(addressBookUI.ERROR_NO_MENU)
 
-        if (menu != book.MENU_FINISH):
+        if (menu != addressBookUI.MENU_FINISH):
             raw_input("menu 화면으로 돌아갑니다. (아무키나 누르세요)")
 
 if __name__ == "__main__":

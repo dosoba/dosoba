@@ -32,75 +32,13 @@ class addressbook(object):
     def remove(self, removeIndex):
         self.list.deleteNode(removeIndex)
 
-    def modify(self):
-        if (self.isEmpty() == True):
-            self.print_error(self.ERROR_EMPTY)
-            return None
+    def modify(self, modifyIndex, info):
+        target = self.list.getNode(modifyIndex)
+        target.data = info
 
-        name = raw_input("수정할 이름: ")
-        modifyIndex = self.list.find(name)
-
-        if (modifyIndex == -1):
-            self.print_error(self.ERROR_NOT_SEARCH)
-            return None
-
-        self.printHeader(-1)
-        self.printPersonInfo(self.list.viewAt(modifyIndex), -1)
-
-        yesno = raw_input("수정하시겠습니까? (y/n) : ")
-        info = personInfo.personalInfo()
-        if (yesno == 'y' or 'Y'):
-            info.name = raw_input("이름 : ")
-            info.phone = raw_input("전화번호 : ")
-            info.address = raw_input("주소 : ")
-
-            print "수정된 정보"
-            target = self.list.getNode(modifyIndex)
-            target.data = info
-            self.printHeader(-1)
-            self.printPersonInfo(target.data, -1)
-            print "수정되었습니다."
-
-    def search(self):
-        if (self.isEmpty() == True):
-            self.print_error(self.ERROR_EMPTY)
-            return None
-
-        name = raw_input("검색할 이름 : ")
+    def search(self, name):
         foundIndex = self.list.find(name)
-
-        if (foundIndex == -1):
-            self.print_error(self.ERROR_NOT_SEARCH)
-            return None
-
-        self.printHeader(-1)
-        self.printPersonInfo(self.list.viewAt(foundIndex), -1)
-
-    def printHeader(self, printNum):
-        print "----------------------------------------------"
-        if (printNum != -1):
-            print "번호  이름     전화번호      주소"
-        else:
-            print "이름     전화번호      주소"
-        print "----------------------------------------------"
-
-    def printPersonInfo(self, info, printNum):
-        if (printNum != -1):
-            print "%-4s" % printNum,
-        print "%-7s %-14s %-50s" % (info.name, info.phone, info.address)
-
-    def printAll(self):
-        number = 1
-        if (self.isEmpty() == True):
-            self.print_error(self.ERROR_EMPTY)
-            return None
-
-        self.printHeader(1)
-        target = self.list.moveFirst()
-        while (self.list.isTail() != True):
-            self.printPersonInfo(target.data, number)
-            target = self.list.moveNext()
-            number = number + 1
+        return foundIndex
 
     def save(self):
         if (self.isEmpty() == True):
