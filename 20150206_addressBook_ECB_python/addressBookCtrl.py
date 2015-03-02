@@ -2,13 +2,14 @@
 
 """
 Name : main.cpp
-Date : 2015.02.09
+Date : 2015.03.02
 Writer : Sejoong Kim
 """
 
 import personInfo
 import linkedList
 import MySQLdb as mdb
+import addressBookUI
 
 class addressbook(object):
     def __init__(self):
@@ -177,3 +178,36 @@ class addressbook(object):
 
         for index in range(10):
             self.list.append(samples[index])
+
+    def launch(self):
+        ui = addressBookUI.addressbook()
+        menu = -1
+
+        while (menu != 0):
+            ui.printMainMenu()
+
+            menu = raw_input("menu: ")
+
+            menu = int(menu)
+
+            if menu == ui.MENU_INPUT:
+                ui.input(self)
+            elif menu == ui.MENU_REMOVE:
+                ui.remove(self)
+            elif menu == ui.MENU_MODIFY:
+                ui.modify(self)
+            elif menu == ui.MENU_SEARCH:
+                ui.search(self)
+            elif menu == ui.MENU_ALL_PRINT:
+                ui.printAll(self)
+            elif menu == ui.MENU_SAVE:
+                self.save_db()
+            elif menu == ui.MENU_LOAD:
+                self.load_db()
+            elif menu == ui.MENU_FINISH:
+                ui.print_finish()
+            else:
+                ui.print_error(ui.ERROR_NO_MENU)
+
+            if (menu != ui.MENU_FINISH):
+                raw_input("menu 화면으로 돌아갑니다. (아무키나 누르세요)")
