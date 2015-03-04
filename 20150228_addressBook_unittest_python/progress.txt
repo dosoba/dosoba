@@ -1,3 +1,9 @@
 2월 28일
 1. addressBookUI 클래스화 재정비
 2. addressBookCtrl 함수내 launch함수 구현 - main 함수 대체
+
+3월 2일
+1. test_linkedList.py 파일 추가
+2. setUp, TearDown 추가
+3. test_get_length Unittest 추가
+4. test_append Unittest 추가

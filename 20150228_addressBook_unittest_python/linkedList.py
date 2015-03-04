@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Name : main.cpp
+Name : linkedList.py
 Date : 2015.01.23
 Writer : Sejoong Kim
 """

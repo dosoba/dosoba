@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Name : main.cpp
+Name : addressBookCtrl.py
 Date : 2015.03.02
 Writer : Sejoong Kim
 """

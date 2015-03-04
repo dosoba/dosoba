@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Name : main.cpp
+Name : addressBookUI.py
 Date : 2015.03.02
 Writer : Sejoong Kim
 """

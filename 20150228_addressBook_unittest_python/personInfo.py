@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Name : main.cpp
+Name : personalInfo.py
 Date : 2015.01.23
 Writer : Sejoong Kim
 """
@@ -12,6 +12,11 @@ class personalInfo:
         self._name = info._name if info else ""
         self._phone = info._phone if info else ""
         self._address = info._address if info else ""
+
+    def __init__(self, name, phone, address):
+        self._name = name
+        self._phone = phone
+        self._address = address
 
     #Destructor
     def __del__(self):
