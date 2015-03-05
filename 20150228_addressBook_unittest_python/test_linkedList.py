@@ -2,7 +2,7 @@
 
 """
 Name : test_linkedList.py
-Date : 2015.03.04
+Date : 2015.03.05
 Writer : Sejoong Kim
 """
 
@@ -45,5 +45,88 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(self.list.viewAt(3).phone, "0104444444")
         self.assertEqual(self.list.viewAt(3).address, "dddd")
 
+    def test_insert(self):
+        self.testInfo4 = personalInfo("test4", "0104444444", "dddd")
+        self.list.insert(1, self.testInfo4)
+
+        self.assertEqual(self.list.getLength(), 4)
+
+        self.assertEqual(self.list.viewAt(1).name, "test4")
+        self.assertEqual(self.list.viewAt(1).phone, "0104444444")
+        self.assertEqual(self.list.viewAt(1).address, "dddd")
+
+    def test_deleteNode(self):
+        self.list.deleteNode(0)
+
+        self.assertEqual(self.list.getLength(), 2)
+
+        self.assertEqual(self.list.viewAt(0).name, "test2")
+        self.assertEqual(self.list.viewAt(0).phone, "0102222222")
+        self.assertEqual(self.list.viewAt(0).address, "bbbb")
+
+    def test_deleteAll(self):
+        self.list.deleteAll()
+
+        self.assertEqual(self.list.getLength(), 0)
+
+    def test_moveFirst(self):
+        self.list.moveFirst()
+
+        self.assertEqual(self.list.viewAt(0).name, "test1")
+        self.assertEqual(self.list.viewAt(0).phone, "0101111111")
+        self.assertEqual(self.list.viewAt(0).address, "aaaa")
+
+    def test_moveNext(self):
+        self.list.moveFirst()
+        self.list.moveNext()
+
+        self.assertEqual(self.list.viewAt(1).name, "test2")
+        self.assertEqual(self.list.viewAt(1).phone, "0102222222")
+        self.assertEqual(self.list.viewAt(1).address, "bbbb")
+
+    def test_moveLast(self):
+        self.list.moveFirst()
+        self.list.moveLast()
+
+        self.assertEqual(self.list.viewAt(2).name, "test3")
+        self.assertEqual(self.list.viewAt(2).phone, "0103333333")
+        self.assertEqual(self.list.viewAt(2).address, "cccc")
+
+    def test_isTail(self):
+        self.list.moveLast()
+        self.assertEqual(self.list.isTail(), False)
+        self.list.moveNext()
+        self.assertEqual(self.list.isTail(), True)
+
+    def test_getNode(self):
+        self.assertEqual(self.list.getNode(1).data.name, "test2")
+        self.assertEqual(self.list.getNode(1).data.phone, "0102222222")
+        self.assertEqual(self.list.getNode(1).data.address, "bbbb")
+
+    def test_viewAt(self):
+        self.assertEqual(self.list.viewAt(2).name, "test3")
+        self.assertEqual(self.list.viewAt(2).phone, "0103333333")
+        self.assertEqual(self.list.viewAt(2).address, "cccc")
+
+    def test_findName(self):
+        self.assertEqual(self.list.find("test1"), 0)
+
 if __name__ == '__main__':
     unittest.main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
