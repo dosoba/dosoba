@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 
 import wx
-class MainWindow(wx.Frame):
-    def __init__(self, parent, title, size):
-        super(MainWindow, self).__init__(parent, title = title, size = size)
-        self.InitUI()
+class MainFrame(wx.Frame):
+    title = 'AddressBook'
+    size = (500, 400)
+
+    def __init__(self, parent):
+        super(MainFrame, self).__init__(parent, title = self.title, size = self.size)
+        self.init_ui()
         self.Centre()
-        self.Show(True)
+        #self.Show(True)
 
-    def InitUI(self):
-        self.InitMenu()
-        self.InitView()
+    def init_ui(self):
+        self.init_menu()
+        self.init_view()
 
-    def InitMenu(self):
+    def init_menu(self):
         menubar = wx.MenuBar()
 
         fileMenu = wx.Menu()
@@ -30,7 +33,7 @@ class MainWindow(wx.Frame):
         self.SetMenuBar(menubar)
 
 
-    def InitView(self):
+    def init_view(self):
 
         panel = wx.Panel(self, -1)
 
@@ -63,16 +66,20 @@ class MainWindow(wx.Frame):
 
 
 class AddWindow(wx.Frame):
-    def __init__(self, parent, title, size):
+
+    title = 'Add Function'
+    size=(300, 220)
+
+    def __init__(self, parent):
         super(AddWindow, self).__init__(parent,
-                                        title = title,
-                                        size=size,
+                                        title = self.title,
+                                        size=self.size,
                                         style=wx.RESIZE_BORDER | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.CLIP_CHILDREN)
-        self.InitUI()
+        self.init_ui()
         self.Centre()
         self.Show()
 
-    def InitUI(self):
+    def init_ui(self):
         panel = wx.Panel(self)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -114,16 +121,20 @@ class AddWindow(wx.Frame):
         panel.SetSizer(vbox)
 
 class SearchWindow(wx.Frame):
-    def __init__(self, parent, title, size):
+
+    title = 'Search Function'
+    size=(300,140)
+
+    def __init__(self, parent):
         super(SearchWindow, self).__init__(parent,
-                                           title = title,
-                                           size = size,
+                                           title = self.title,
+                                           size = self.size,
                                            style=wx.RESIZE_BORDER | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.CLIP_CHILDREN)
-        self.InitUI()
+        self.init_ui()
         self.Centre()
         self.Show()
 
-    def InitUI(self):
+    def init_ui(self):
         panel = wx.Panel(self)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -153,16 +164,20 @@ class SearchWindow(wx.Frame):
         panel.SetSizer(vbox)
 
 class ModifyWindow(wx.Frame):
-    def __init__(self, parent, title, size):
+
+    title = 'Modify Function'
+    size=(300, 220)
+
+    def __init__(self, parent):
         super(ModifyWindow, self).__init__(parent,
-                                        title = title,
-                                        size=size,
+                                        title = self.title,
+                                        size=self.size,
                                         style=wx.RESIZE_BORDER | wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.CLIP_CHILDREN)
-        self.InitUI()
+        self.init_ui()
         self.Centre()
         self.Show()
 
-    def InitUI(self):
+    def init_ui(self):
         panel = wx.Panel(self)
         vbox = wx.BoxSizer(wx.VERTICAL)
 
@@ -211,7 +226,7 @@ def main():
     #MainWindow(None, title = 'AddressBook', size=(500, 400))
     #AddWindow(None, title = 'Add Function', size=(300, 220))
     #SearchWindow(None, title = 'Search Function', size=(300,140))
-    ModifyWindow(None, title = 'Modify Function', size=(300, 220))
+    ModifyWindow(None)
     mainWindow.MainLoop()
 
 
