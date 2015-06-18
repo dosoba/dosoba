@@ -9,6 +9,7 @@ Writer : Sejoong Kim
 #import addressBookCtrl
 import wx
 import addressBookGUI
+import mainFrame
 
 def main():
     '''
@@ -24,7 +25,8 @@ def main():
     date : '15.06.10
     '''
     main_app = wx.App()
-    main_ui = addressBookGUI.MainFrame(None)
+    #main_ui = addressBookGUI.MainFrame(None)
+    main_ui = mainFrame.MainFrame(None)
     main_ui.Show(True)
     main_app.MainLoop()
 

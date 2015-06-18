@@ -20,3 +20,16 @@
         1.1.4. test_remove 함수 추가
         1.1.5. test_modify 함수 추가
         1.1.6. test_search 함수 추가
+
+6월 10일
+1. addressBookGUI.py 구성
+    - mainFrame
+    - addFrame
+    - searchFrame
+    - modifyFrame
+
+6월 18일
+1. mainFrame.py로 구성
+2. addDialog.py로 구성
+3. searchDialog.py
+4. modifyDialog.py
