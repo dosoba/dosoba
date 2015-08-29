@@ -1,0 +1,63 @@
+@startuml
+
+class PersonalInfo {
+    - name : String
+    - phone : String
+    - address : String
+
+    + getName() : String
+    + getPhone() : String
+    + getAddress() : String
+    + setName(name : String)
+    + setPhone(phone : String)
+    + setAddress(address : String)
+}
+
+class SubjectInformation {
+    - title : String
+    - score : Integer
+
+    + getTitle() : String
+    + getScore() : Integer
+    + setTitle(title : String)
+    + setScore(score : Integer)
+}
+
+class StudentInformation {
+    - korean : SubjectInformation
+    - english : SubjectInformation
+    - mathematics : SubjectInformation
+    - classNumber : Integer
+    - totalScore : Integer
+    - average : Float
+    - grade : Integer
+
+    + getClassNumber() : Integer
+    + getTotalScore() : Integer
+    + getAverage() : Float
+    + getGrade() : Integer
+    + setSubject(subject : SubjectInformation, title : String, score : Integer)
+    + setClassNumber(classNumber : Integer)
+    + setTotalScore(totalScore : Integer)
+    + setAverage(average : Float)
+    + setGrade(grade : Integer)
+}
+
+class StudentManagement {
+    - students : list<StudentInformation>
+
+    + addStudent()
+    + removeStudent(name : String)
+    + editStudent(name : String)
+    + searchStudent(name : String)
+    + updateSubjectScore(subject : SubjectInformation, score : Integer)
+    + save()
+    + load()
+}
+
+note top : python don't have private, protected, package private
+PersonalInfo <|-- StudentInformation
+StudentInformation --> SubjectInformation
+StudentManagement "1"-->"0...*" StudentInformation
+
+@enduml
