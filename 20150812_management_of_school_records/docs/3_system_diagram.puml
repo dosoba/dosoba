@@ -1,0 +1,18 @@
+@startuml
+title System Diagram
+
+(Main) <--> (AddStudent) : students
+
+(Main) --> (RemoveStudent) : students, name
+(RemoveStudent) --> (Main): students
+
+(Main) --> (EditStudent) : students, name
+(EditStudent) --> (Main) : students
+
+(Main) --> (SearchStudent) : students, name
+(SearchStudent) --> (Main) : students
+
+(Main) --> (Save) : students
+(Main) <-- (Load) : students
+
+@enduml
