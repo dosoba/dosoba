@@ -25,5 +25,5 @@ menu :
 ```
 
 ## 기타
-markdown 작성 설명은 아래 참고
-https://guides.github.com/features/mastering-markdown/
+* markdown 작성 설명은 아래 참고
+ * https://guides.github.com/features/mastering-markdown/
