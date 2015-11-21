@@ -38,12 +38,11 @@ void BinaryToDecimalPrint(int *(array), int size) {
 		repeat = (size / NUMBER);
 	}
 
-
 	while (i <= repeat) {
 
-		start = (NUMBER) * i - 1;
+		start = (NUMBER * i) - 1;
 		if (start > size) {
-		start = size;
+			start = size;
 		}
 
 		end = NUMBER * (i - 1);
