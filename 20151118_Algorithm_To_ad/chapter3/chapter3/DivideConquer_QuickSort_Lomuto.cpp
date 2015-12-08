@@ -11,6 +11,7 @@ void Print_arr(int *(arr), int size);
 void SetupInput(int *(arr), int size);
 void QuickSort(int *(arr), int left, int right);
 int Partition_Lomuto(int *(arr), int partition, int right);
+int Partition_Lomuto_wiki (int *(arr), int left, int right);
 void Swap(int *src, int *dst);
 
 int main(int argc, char argv[]) {
@@ -62,9 +63,10 @@ void QuickSort(int *(arr), int left, int right) {
 	}
 }
 
+//aps version
 int Partition_Lomuto(int *(arr), int partition, int right) {
 	int x = arr[right];
-	int i = partition - 1;
+	int i = partition - 1;`
 
 	for (int j = partition; j < right; j++) {
 		if (arr[j] <= x) {
@@ -76,6 +78,22 @@ int Partition_Lomuto(int *(arr), int partition, int right) {
 
 	return i + 1;
 
+}
+
+//wikipedia version
+int Partition_Lomuto_wiki (int *(arr), int left, int right) {
+	int pivot = arr[right];
+	int i = left;
+
+	for (int j = left; j<right; j++) {
+		if(arr[j] <= pivot) {
+			Swap(&arr[i], &arr[j]);
+			i++;
+		}
+	}
+	Swap(&arr[i], &arr[right]);
+
+	return i;
 }
 
 void Swap(int *src, int *dst) {
