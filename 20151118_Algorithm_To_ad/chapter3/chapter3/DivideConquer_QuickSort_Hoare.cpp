@@ -98,3 +98,42 @@ void Swap(int *src, int *dst) {
 //output
 #1 2 8 10 16 22 30 31 69
 #2 2 8 10 16 30 31 69 69
+
+
+// 디버깅
+주어진 데이터						action
+3	2	4	6	9	1	8	7	5
+p
+l1		l2			r2			r1
+1			4						Swap
+l1			r1
+r2	l2						cross
+1		3							Swap
+s							split
+1	2	3	6	9	4	8	7	5
+l1	r1
+p
+l1	r1
+r2	l2								cross
+1									Swap
+
+1	2	3	6	9	4	8	7	5
+p
+l1	l2				r2 r1			Swap
+5				9
+l1	r2	l2		r1					cross
+4		6							Swap
+s									split
+1	2	3	4	5	6	8	7	9
+p
+l1	r1
+r2	l2								cross
+4									Swap
+
+1	2	3	4	5	6	8	7	9
+p
+l1		r1
+r2	l2								cross
+7	8								swap
+s
+1	2	3	4	5	6	7	8	9
