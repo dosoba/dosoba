@@ -66,7 +66,7 @@ void QuickSort(int *(arr), int left, int right) {
 //aps version
 int Partition_Lomuto(int *(arr), int partition, int right) {
 	int x = arr[right];
-	int i = partition - 1;`
+	int i = partition - 1;
 
 	for (int j = partition; j < right; j++) {
 		if (arr[j] <= x) {
@@ -80,7 +80,7 @@ int Partition_Lomuto(int *(arr), int partition, int right) {
 
 }
 
-//wikipedia version
+//wikipedia version : use
 int Partition_Lomuto_wiki (int *(arr), int left, int right) {
 	int pivot = arr[right];
 	int i = left;
@@ -105,11 +105,102 @@ void Swap(int *src, int *dst) {
 
 //input
 2
-8
-69 10 30 2 16 8 31 22
+9
+3 2 4 6 9 1 8 7 5
 8
 69 10 30 2 16 8 31 69
 
 //output
-#1 2 8 10 16 22 30 31 69
+#1 1 2 3 4 5 6 7 8 9
 #2 2 8 10 16 30 31 69 69
+
+//debug
+3	2	4	6	9	1	8	7	5
+l								r
+p
+i
+j
+3									swap
+i
+j
+2								swap
+i
+j
+4							swap
+i
+j
+j
+j
+1		6				swap
+i
+j
+j
+j
+5				9	swap
+s
+3	2	4	1	5	6	8	7	9
+l			r
+l			r
+p
+i
+j
+j
+j
+j
+1			3						swap
+s
+1	2	4	3
+l
+r										skip
+l		r
+l		r
+p
+i
+j
+2
+i
+j
+j
+3	4						swap
+s
+l
+r								skip
+l
+r						skip
+1	2	3	4	5	6	8	7	9
+l			r
+l			r
+p
+i
+j
+6
+i			swap
+j
+8			swap
+i
+j
+7		swap
+i
+j
+9	swap
+s
+6	8	7
+l		r
+l		r
+p
+i
+j
+6				swap
+i
+j
+j
+7	8		swap
+s
+6
+i
+j				skip
+8
+i
+j		skip
+6	7	8
+1	2	3	4	5	6	7	8	9	°á°ú
