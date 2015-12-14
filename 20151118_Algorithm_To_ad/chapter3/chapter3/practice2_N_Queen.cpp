@@ -4,10 +4,10 @@
 * 페이지 : 93
 * 코드 : c
 **********************************/
-/*
+
 #include <stdio.h>
 
-#define MAX 5
+#define MAX 10
 
 typedef enum BOOL { FALSE = 0, TRUE = 1 };
 
@@ -81,7 +81,7 @@ void GetNQueen(int n, int y, int x) {
 			idx++;
 			GetNQueen(n, y + 1, j);
 		}
-		if (j == 4) {
+		if (j == n) {
 			idx--;
 		}
 	}
@@ -106,4 +106,3 @@ void Print_arr(int n) {
 #1
 (1 2) (2 4) (3 1) (4 3)
 (1 3) (2 1) (3 4) (4 2)
-*/
