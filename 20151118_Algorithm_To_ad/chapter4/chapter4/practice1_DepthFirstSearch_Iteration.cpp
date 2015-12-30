@@ -6,7 +6,7 @@
 * 페이지 : 157
 * 코드 : c
 **********************************/
-
+/*
 #include <stdio.h>
 
 #define MAX 8
@@ -123,3 +123,4 @@ void DfsIteration(int vertex) {
 
 //output
 1 3 7 6 5 2 4
+*/

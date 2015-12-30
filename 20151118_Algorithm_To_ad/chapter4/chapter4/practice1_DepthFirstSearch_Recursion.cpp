@@ -13,8 +13,8 @@
 
 int visited[MAX] = { 0, };
 int graph[MAX][MAX] = { { 0, }, };
-//int counts;
 
+void InitVisited();
 void InitGraph();
 void MakeGraph(int edgeSize);
 void DfsRecursive(int vertex);
@@ -25,16 +25,23 @@ int main(int argc, char argv[]) {
 
 	scanf("%d ", &T);
 	for (int test_case = 1; test_case <= T; test_case++) {
-		//counts = 0;
 		scanf("%d ", &E);
 
+		InitVisited();
 		InitGraph();
 		MakeGraph(E);
 		DfsRecursive(1);
-		//printf("\ncounts : %d\n", counts);
 	}
 
 	return 0;
+}
+
+void InitVisited() {
+	int i = 0;
+	while (i < MAX) {
+		visited[i] = 0;
+		i++;
+	}
 }
 
 void InitGraph() {
@@ -57,7 +64,7 @@ void MakeGraph(int edgeSize) {
 	while (i < edgeSize) {
 		scanf("%d %d ", &start, &end);
 		graph[start][end] = 1;
-		graph[end][start] = 1;// 삭제 가능 무향성이라서 추가해놈
+		graph[end][start] = 1;
 		i++;
 	}
 }
@@ -67,7 +74,6 @@ void DfsRecursive(int vertex) {
 
 	visited[vertex] = 1;
 	printf("%d ", vertex);
-	//counts++;
 
 	for (i = 1; i < MAX; i++) {
 		if (graph[vertex][i] != 0) {
