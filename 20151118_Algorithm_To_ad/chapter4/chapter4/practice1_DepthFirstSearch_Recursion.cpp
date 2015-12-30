@@ -57,7 +57,7 @@ void MakeGraph(int edgeSize) {
 	while (i < edgeSize) {
 		scanf("%d %d ", &start, &end);
 		graph[start][end] = 1;
-		graph[end][start] = 1;
+		graph[end][start] = 1;// 삭제 가능 무향성이라서 추가해놈
 		i++;
 	}
 }
