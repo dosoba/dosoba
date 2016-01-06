@@ -45,9 +45,12 @@ void InitVisited() {
 }
 
 void InitGraph() {
-	int i = 0;
-	int j = 0;
+	int i;
+	int j;
+
+	i = 0;
 	while (i < MAX) {
+		j = 0;
 		while (j < MAX) {
 			graph[i][j] = 0;
 			j++;
