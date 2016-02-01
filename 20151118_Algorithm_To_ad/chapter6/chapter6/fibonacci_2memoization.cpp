@@ -26,8 +26,8 @@ int fibo1(int n) {
 
 void initMemo() {
 	for (int i = 0; i < MAX; i++) {
-		if (i == 0 || i == 1) {
-			memo[i] = 1;
+		if (i < 2) {
+			memo[i] = i;
 		}
 		else {
 			memo[i] = 0;

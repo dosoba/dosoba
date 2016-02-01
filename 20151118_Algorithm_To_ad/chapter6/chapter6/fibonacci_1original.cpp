@@ -15,12 +15,12 @@ int main() {
 }
 
 int fibo0(int n) {
-	if (n == 0 || n == 1) {
-		return 1;
+	if (n < 2) {
+		return n;
 	}
 	else {
 		return fibo0(n - 1) + fibo0(n - 2);
-	}	
+	}
 }
 
 //output
