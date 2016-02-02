@@ -3,6 +3,8 @@
 * 페이지 : 254
 * 코드 : c
 **********************************/
+
+
 #include <stdio.h>
 
 #define MAX 10
@@ -14,7 +16,7 @@ int main() {
 	int N;
 	scanf("%d ", &T);
 
-	for (int i = 2; i <= T; i++) {
+	for (int i = 1; i <= T; i++) {
 		scanf("%d ", &N);
 		printf("%d \n", CountsHowToMakeStick(N));
 	}
