@@ -26,8 +26,9 @@ int main() {
 int CountsHowToMakeStick(int n) {
 
 	sticks[1] = 2;
-	for (int i = 2; i <= n; i++) {
-		sticks[i] = 2 * sticks[i - 1] + ((i - 1) % 2);
+	sticks[2] = 5;
+	for (int i = 3; i <= n; i++) {
+		sticks[i] = 2 * sticks[i - 1] + sticks[i - 2];
 	}
 
 	return sticks[n];
@@ -42,7 +43,7 @@ int CountsHowToMakeStick(int n) {
 6
 //output
 5
-10
-21
-42
-85
+12
+29
+70
+169
