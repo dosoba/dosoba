@@ -6,13 +6,13 @@
 void combination(int set[], int set_size, int n, int k, int index);
 void print_arr(int arr[], int arr_size);
 void getMaxProfit(int set[], int set_size);
+int getMaxWood(int set[], int set_size);
 
 int c;							//커팅 비용
 int v;							//단위 가격
 int boxes[MAX_BOX];				//박스 개수
 int woods[MAX_BOX][MAX_WOOD];	//나무토막 정보
 int maxProfit;					//최대 이익
-int maxWood;					//최대 나무토막 길이
 
 int main() {
 	int test_case;
@@ -23,9 +23,8 @@ int main() {
 
 	scanf("%d", &T);	// 전체 테스트 케이스 입력
 
-	for (test_case = 1; test_case <= 3; test_case++) {
+	for (test_case = 1; test_case <= 1; test_case++) {
 		maxProfit = 0;
-		maxWood = 0;
 
 		scanf("%d", &n);		// 전체 박스 개수 입력
 		scanf("%d %d", &c, &v);	// 커팅비용, 단위 가격 입력
@@ -35,9 +34,6 @@ int main() {
 			scanf("%d", &boxes[i]);
 			for (int j = 0; j < boxes[i]; j++) {
 				scanf("%d", &woods[i][j]);
-				if (maxWood < woods[i][j]) {	//최대 크기 나무토막 길이 구하기
-					maxWood = woods[i][j];
-				}
 			}
 		}
 
@@ -48,6 +44,23 @@ int main() {
 	return 0;
 }
 
+// 3개박스 중에서 가장 큰 길이의 나무도막을 찾는 함수
+int getMaxWood(int set[], int set_size) {
+	int i;
+	int j;
+
+	int maxWood = 0;
+	for (i = 0; i < set_size; i++) {
+		for (j = 0; j < boxes[set[i]]; j++) {
+			if (woods[set[i]][j] > maxWood) {
+				maxWood = woods[set[i]][j];
+			}
+		}
+	}
+	return maxWood;
+}
+
+// 최대이익 찾는 함수
 void getMaxProfit(int set[], int set_size) {
 	int i;
 	int j;
@@ -56,6 +69,8 @@ void getMaxProfit(int set[], int set_size) {
 	int profit;
 	int counts_woods;
 	int counts_costs;
+
+	int maxWood = getMaxWood(set, set_size);
 
 	for (i = 1; i <= maxWood; i++) {
 		profit = 0;
@@ -74,15 +89,16 @@ void getMaxProfit(int set[], int set_size) {
 			}
 		}
 		profit = (counts_woods * i * v) - (counts_costs * c);
-		//printf("unit : %d, ", i);
-		//printf("profit : %d, ", profit);
-		//print_arr(set, set_size);
+		printf("unit : %d, ", i);
+		printf("profit : %d, ", profit);
+		print_arr(set, set_size);
 		if (maxProfit < profit) {
 			maxProfit = profit;
 			//print_arr(set, set_size);
 		}
 	}
 }
+
 
 // n개의 박스 중에 3개를 선택하기 위해서 조합을 구현 (nCk)
 void combination(int set[], int set_size, int n, int k, int index) {
