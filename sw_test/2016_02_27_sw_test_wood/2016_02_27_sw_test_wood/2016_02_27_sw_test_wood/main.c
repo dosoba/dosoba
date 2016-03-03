@@ -13,6 +13,7 @@ int v;							//단위 가격
 int boxes[MAX_BOX];				//박스 개수
 int woods[MAX_BOX][MAX_WOOD];	//나무토막 정보
 int maxProfit;					//최대 이익
+int maxWood;					//최대길이 나무토막
 
 int main() {
 	int test_case;
@@ -23,7 +24,7 @@ int main() {
 
 	scanf("%d", &T);	// 전체 테스트 케이스 입력
 
-	for (test_case = 1; test_case <= 1; test_case++) {
+	for (test_case = 1; test_case <= T; test_case++) {
 		maxProfit = 0;
 
 		scanf("%d", &n);		// 전체 박스 개수 입력
@@ -70,16 +71,21 @@ void getMaxProfit(int set[], int set_size) {
 	int counts_woods;
 	int counts_costs;
 
-	int maxWood = getMaxWood(set, set_size);
+	int counts_woods2;
+	int profit2;
+
+	maxWood = getMaxWood(set, set_size);
 
 	for (i = 1; i <= maxWood; i++) {
 		profit = 0;
 		counts_woods = 0;
 		counts_costs = 0;
 
+		profit2 = 0;
+		counts_woods2 = 0;
+
 		for (j = 0; j < set_size; j++) {
-			for (k = 0; k < boxes[set[j]]; k++) {
-				//1. 무조건 나누는 경우
+			for (k = 0; k < boxes[set[j]]; k++) {	//1. 무조건 나누는 경우
 				counts_woods += woods[set[j]][k] / i;
 				counts_costs += (woods[set[j]][k] / i) - 1;
 
@@ -87,18 +93,29 @@ void getMaxProfit(int set[], int set_size) {
 					counts_costs++;
 				}
 			}
+
+			for (k = 0; k < boxes[set[j]]; k++) {	//2. 동일한 것으로 나누는 경우
+				if (i == woods[set[j]][k]) {
+					counts_woods2++;
+				}
+			}
 		}
 		profit = (counts_woods * i * v) - (counts_costs * c);
-		printf("unit : %d, ", i);
-		printf("profit : %d, ", profit);
-		print_arr(set, set_size);
+		profit2 = (counts_woods2 * i * v);
+		//printf("unit : %d, ", i);
+		//printf("profit : %d, ", profit);
+		//print_arr(set, set_size);
+
+		if (profit < profit2) {
+			profit = profit2;
+		}
+
 		if (maxProfit < profit) {
 			maxProfit = profit;
 			//print_arr(set, set_size);
 		}
 	}
 }
-
 
 // n개의 박스 중에 3개를 선택하기 위해서 조합을 구현 (nCk)
 void combination(int set[], int set_size, int n, int k, int index) {
