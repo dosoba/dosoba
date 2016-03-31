@@ -3,10 +3,15 @@
 * 페이지 : 168, https://algospot.com/judge/problem/read/CLOCKSYNC#
 * 코드 : c
 **********************************/
+
 //input
 2
 12 6 6 6 6 6 12 12 12 12 12 12 12 12 12 12
 12 9 3 12 6 6 9 3 12 9 12 9 12 12 6 6
+
+//output
+2
+9
 
 #include <stdio.h>
 #define SWITCHES 10
@@ -20,8 +25,8 @@ char linked[SWITCHES][CLOCKS + 1] = {
 	"...x...x.x.x....",
 	"....x.....x...xx",
 	"x...xxxx........",
-	".....xxx.x.x....",
-	"..x...........xx",
+	"......xxx.x.x...",
+	"x.x...........xx",
 	"...x..........xx",
 	"....xx.x......xx",
 	".xxxxx..........",
@@ -74,16 +79,19 @@ int main() {
 
 	int test_case;
 	int T;
+	int result;
 
 	scanf("%d", &T);
 
 	for (test_case = 1; test_case <= T; test_case++) {
 		
+		result = 0;
 		for (int i = 0; i < CLOCKS; i++) {
 			scanf("%d", &clocks[i]);
 		}
-
-		printf("%d\n", solve(clocks, 0));
+		result = solve(clocks, 0);
+		if (result == INF) result = -1;
+		printf("%d\n", result);
 	}
 
 	return 0;
