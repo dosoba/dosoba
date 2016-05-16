@@ -20,20 +20,19 @@
 1 3
 
 #include <stdio.h>
-void hanoi(int n, int a, int b, int c);
+void hanoi(int n, int from, int to, int spare);
 
 int main() {
 	int n;
 	scanf("%d", &n);
 	printf("%d\n", (1 << n) - 1);
-	hanoi(n, 1, 2, 3);
+	hanoi(n, 1, 3, 2);
 	return 0;
 }
 
-
-void hanoi(int n, int a, int b, int c) {
+void hanoi(int n, int from, int to, int spare) {
 	if (n == 0) return;
-	hanoi(n - 1, a, c, b);
-	printf("%d %d\n", a, c);
-	hanoi(n - 1, b, a, c);
+	hanoi(n - 1, from, spare, to);
+	printf("%d %d\n", from, to);
+	hanoi(n - 1, spare, to, from);
 }
